@@ -1,0 +1,25 @@
+FROM python:3.5-slim
+
+MAINTAINER HaiQuan "haiquan5396@gmail.com"
+
+ENV MODE "PULL"
+ENV TIME_PUSH 0.5
+
+COPY Fog/Driver/HomeAssistant/requirements.txt /app/requirements.txt
+
+VOLUME /app/config
+
+WORKDIR /app
+
+RUN pip3 install -r requirements.txt
+
+COPY Fog/Driver/HomeAssistant/HomeAssistant_Driver.py /app
+
+COPY Performance_Monitoring/message_monitor.py /app/Performance_Monitoring/message_monitor.py
+
+COPY Fog/Driver/Driver_Base.py /app
+
+CMD python3 HomeAssistant_Driver.py ${MODE} ${TIME_PUSH}
+
+#docker build -t haiquan5396/homeassistant_driver:1.0 -f Dockerfile_Home_Assistant .
+#docker run -it --name home-driver-test -e "MODE=PUSH" -v /config: /app/config haiquan5396/homeassistant_driver:1.0

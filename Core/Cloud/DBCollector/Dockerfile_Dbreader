@@ -1,0 +1,21 @@
+FROM python:3.5-slim
+
+MAINTAINER HaiQuan "haiquan5396@gmail.com"
+
+ENV BROKER_CLOUD localhost
+ENV HOST_INFLUXDB locahost
+
+COPY Cloud/DBCollector/requirements.txt /app/requirements.txt
+
+COPY Performance_Monitoring/message_monitor.py /app/Performance_Monitoring/message_monitor.py
+
+WORKDIR /app
+
+RUN pip3 install -r requirements.txt
+
+COPY Cloud/DBCollector/Dbreader.py /app
+
+CMD python3 Dbreader.py ${BROKER_CLOUD} ${HOST_INFLUXDB}
+
+#docker build -t haiquan5396/db-reader:1.2 -f Dockerfile_Dbreader .
+#docker run -it --name db-reader-test -e "BROKER_CLOUD=192.168.60.248" -e "HOST_INFLUXDB=192.168.60.248" haiquan5396/db-reader:1.2
