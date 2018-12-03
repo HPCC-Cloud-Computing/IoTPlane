@@ -1,0 +1,21 @@
+FROM python:3.5-slim
+
+MAINTAINER HaiQuan "haiquan5396@gmail.com"
+
+ENV BROKER_CLOUD localhost
+ENV BROKER_FOG locahost
+
+COPY Cloud/Forwarder/requirements.txt /app/requirements.txt
+
+COPY Performance_Monitoring/message_monitor.py /app/Performance_Monitoring/message_monitor.py
+
+WORKDIR /app
+
+RUN pip3 install -r requirements.txt
+
+COPY Cloud/Forwarder/Forwarder_Cloud_to_Fog.py /app
+
+CMD python3 Forwarder_Cloud_to_Fog.py ${BROKER_CLOUD} ${BROKER_FOG}
+
+#docker build -t haiquan5396/forwarder_cloud_to_fog:1.2 -f Dockerfile_Cloud_to_Fog .
+#docker run -it --name cloud-fog-test -e "BROKER_CLOUD=192.168.60.248" -e "BROKER_FOG=192.168.60.248" haiquan5396/forwarder_cloud_to_fog:1.2
