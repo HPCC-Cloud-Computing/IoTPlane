@@ -1,0 +1,2579 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Rules management</title>
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+        page. However, you can choose any other skin. Make sure you
+        apply the skin class to the body tag so the changes take effect. -->
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+    <!-- Google Font -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/fonts.googleapis.css">
+
+
+    <style>
+
+
+    </style>
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="home.html" class="logo">
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><b>HPCC-IoT</b></span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <!-- <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a> -->
+
+    </nav>
+  </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+
+
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <!-- <li class="header">
+                        <form>
+                            <label class="radio-inline"><input type="radio" class="with-gap" name="optradio">Instance name</label>
+                            <label class="radio-inline"><input type="radio" class="with-gap" name="optradio">Business name</label>
+                        </form>
+                    </li>
+                     -->
+                    <!-- Optionally, you can add icons to the links -->
+                    <li class="inactive"><a href="index.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                    <li class="inactive"><a href="realtime_diag.html"><i class="fa fa-line-chart"></i> <span>Realtime Diagram</span></a></li>
+                    <li class="active"><a href="rule_management.html"><i class="fa fa-cog"></i> <span>Rules</span></a></li>
+                    <!-- <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li> -->
+                    <!-- <li class="treeview">
+                        <a href="#"><i class="fa fa-link"></i> <span>More</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#">Nosource</a></li>
+                            <li><a href="#">Maybe later</a></li>
+                        </ul>
+                    </li> -->
+                </ul>
+                <!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <h1>
+                    Rules management
+                </h1>
+                <!-- <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                    <li class="active">Here</li>
+                </ol> -->
+            </section>
+
+            <!-- Main content -->
+            <section class="content container-fluid">
+
+                <!--------------------------
+        | Your Page Content Here |
+        -------------------------->
+                <!-- active rules -->
+                <div class="col-md-4">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Active rules</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <ul class="list-group" id="rule-list">
+                            </ul>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+
+                <!-- dic containing modals created -->
+                <div id="modal-div"></div>
+
+                <!-- add rules -->
+                <div class="col-md-8">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Create your rule</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <!-- as we do not use php, we need to redo the form in javascript -->
+                        <div class="box-body" id="rule-form">
+
+                            <!-- when the form is submitted it will trigger add_new_rule(), and not refresh the page thank to the return false -->
+                            <div class="row" style="padding-left:15px">
+                                <form name="frm" onsubmit="add_new_rule();return false" method="post">
+                                    <div class="row" id="general-field">
+                                        <div class="row col-xs-12 col-md-6">
+                                            <label class="col-xs-4">Rule's name</label>
+                                            <input id="rule-name-input" class="col-xs-7 " type="text" name="rule_name" required="true" placeholder="A name">
+                                        </div>
+                                    </div>
+                                    <!-- setting the trigger -->
+                                    <label>IF</label> <br>
+                                    <fieldset id="trigger_field" class="col-xs-12">
+                                    </fieldset>
+
+                                    <div class="col-md-12 text-center" id="add-bitwise-operator"></div>
+
+                                    <!-- setting the action to take -->
+                                    <label>THEN</label> <br>
+
+                                    <fieldset id="action-field" class="col-xs-12">
+                                    </fieldset>
+
+                                    <div class="col-md-12 text-center">
+                                        <span class="glyphicon glyphicon-plus" onclick="add_action_form()"></span> <br>
+                                    </div>
+
+
+                                    <!-- setting the condition -->
+                                    <!-- <label>BUT ONLY IF</label> <br> -->
+                                    <!-- <button onclick="add_condition_form('FIRST')">BUT ONLY IF</button> -->
+
+                                    <!-- <div class="row">
+                                        <div class="col-md-2 text-center">
+                                            <label>BUT ONLY IF</label> <br>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <button type="button" class="btn btn-default" onclick="start_realtime();"><i class="fa fa-play"></i></button><br> Enable
+                                        </div>
+                                        <div  class="col-md-4 text-center">
+                                            <button type="button" class="btn btn-default" onclick="stop_realtime();"><i class="fa fa-stop"></i></button><br> Disable
+                                        </div>
+                                    </div> -->
+
+
+
+                                    <fieldset id="condition_field" class="col-xs-12">
+                                    </fieldset>
+
+                                    <div class="col-md-12 text-center" id="add-condition-bitwise-operator"></div>
+
+                                    <input class='btn' type="submit" value="add rule" type="button" />
+                                    <button class='btn' onclick="generate_add_form()" type="button">cancel</button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                HPCC IoT Team
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2018 <a href="#">HPPC</a>.</strong> All rights reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane active" id="control-sidebar-home-tab">
+
+
+                </div>
+
+                <!-- Stats tab content -->
+                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+                <!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+  immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 3 -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- FastClick -->
+    <script src="bower_components/fastclick/lib/fastclick.js"></script>
+
+    <!-- toogle button -->
+    <link href="plugins/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="plugins/bootstrap-toggle.min.js"></script>
+
+    <!-- AJAX needed file -->
+    <script src="test/ajax.js"></script>
+
+
+
+
+    <!-- Config file for this app (API server name, operator button) -->
+    <script src="config/config.js"></script>
+
+
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
+
+
+    <script>
+        // next 100 lines need to change #B1
+        //the classes corresponding with the server
+        
+
+        function stop_realtime(){
+            // Because you can't change it state if it is diable..
+            $('#condition_field').hide()
+            $('#add-condition-bitwise-operator').hide()
+        }
+        function start_realtime(){
+            $('#condition_field').show()    
+            $('#add-condition-bitwise-operator').show()
+        }
+
+        class Rule {
+            constructor(name, status) {
+                this.rule_name       = name;
+                this.rule_status     = status;
+                this.rule_id         = "" + Math.random().toString(36).substr(2, 9);
+                this.trigger_id      = "" + Math.random().toString(36).substr(2, 9);
+                this.condition_id    = "" + Math.random().toString(36).substr(2, 9);
+                this.action_id       = "" + Math.random().toString(36).substr(2, 9);
+
+                this.trigger = {trigger_id : this.trigger_id, trigger_type : "", description : "", config : [], outputs : []};
+                this.condition = {condition_id:this.condition_id, condition_type:"", description:"", config:[]};
+                this.action = {action_id:this.action_id, action:[]};
+            }
+
+            add_trigger(trigger_type, description, config, outputs){
+                console.log("add_trigger")
+                this.trigger.trigger_type   = trigger_type
+                this.trigger.description    = description
+                this.trigger.config.push(config)
+                this.trigger.outputs.push(outputs)
+            }
+
+
+            add_condition(condition_type, description, config) {
+                console.log("add_condition")
+                this.condition.condition_type   = condition_type
+                this.condition.description      = description
+                this.condition.config.push(config)
+            }
+
+            add_action(time, action_type, sub_action_id, platform_id, thing_global_id, item_global_id, item_type, item_name, value) {
+                this.action.action.push({
+                    time: time,
+                    action_type: action_type,
+                    sub_action_id : sub_action_id,
+                    config : {item:{platform_id: platform_id, thing_global_id:thing_global_id, item_global_id:item_global_id, item_name:item_name, item_type:item_type}, value:value}
+                });
+            }
+        }
+
+        //First we have all the initialization
+        
+        // next 12 lines need to change #A1
+        //we load platforms data we need from the api
+        var platform_list = get_data_from_api(sensor_API + "/api/platforms");
+
+        console.log("platform_list");
+        console.log(platform_list);
+        // platform_list[0].sources = get_data_from_api(sensor_API + "/api/sources/platform_id/" + platform_list[0].PlatformId + "/all/all");
+        // console.log(platform_list[0].sources);
+        // console.log(platform_list[0].sources[0].metrics[0]);
+
+        // then we concatenate the platform array with corresponding sources and metrics
+        for (let i = 0; i < platform_list.length; i++) {
+            //platform_list[i].sources = get_data_from_api(sensor_API + "/api/sources/platform_id/" + platform_list[i].PlatformId);
+	    let source_temp = get_data_from_api(sensor_API + "/api/sources/platform_id/" + platform_list[i].PlatformId);
+	    for(let i = 0; i < source_temp.length; i++){
+		for(let j = 0; j < source_temp[i].metrics.length; j++){
+		    if(source_temp[i].metrics[j].MetricDomain == 'unknown'){
+			console.log('haha')
+		    	source_temp[i].metrics.splice(j,1);
+			console.log(source_temp[i].metrics)
+			j = 0;
+		    }
+		}
+		if(source_temp[i].metrics.length == 0){
+		   console.log('hihii')
+		   source_temp.splice(i,1);
+		   i = 0
+		}
+	    }
+
+	    platform_list[i].sources = source_temp
+	    console.log(platform_list[i].PlatformName)
+	    console.log(platform_list[i].sources)
+
+
+            for (let j = 0; j < platform_list[i].sources.length; j++) {
+                if (platform_list[i].sources[j].information.SourceType.localeCompare("updater") == 0) {
+                    platform_list[i].sources.splice(j, 1);
+                }
+            }
+        }
+
+
+        // var used to generate an id for each condition/action
+        var trigger_number = 0;
+        var condition_number = 0;
+        var action_number = 0;
+        var trigger_config_id = 0;
+        generate_add_form(); //#C
+
+        // the global var that contain the rules
+        var rules = [];
+
+        // this generate the rules' list and the add field on the right
+        list_existing_rule();
+
+        // definition of the functions :
+
+
+        //return downloaded data from both API
+        function get_data_from_api(url) {
+            var request = new XMLHttpRequest();
+            request.open('GET', url, false); // `false` makes the request synchronous
+            request.send(null);
+
+            if (request.readyState == 4) {
+                if (request.status == 200 || request.status == 201) {
+                    return JSON.parse(request.responseText);
+                }
+                else{
+                    console.log("err get data")
+                }
+            }
+        }
+
+        /* list and display existing rules in left panel
+         it is called a first time when the the page is loaded and whenever there is a change in the list
+         It's mostly a loop that diplay the name and generate the button to act on the rules
+         Also at the end of the loop it generate the modal windows for edit and details
+         */
+        function list_existing_rule() {
+            var ruleList = document.getElementById("rule-list");
+            //first we remove the old list of rules (if it exist)
+            while (ruleList.firstChild) {
+                ruleList.removeChild(ruleList.firstChild);
+            }
+
+            rules = get_data_from_api(rule_API + "/rule");
+            for (let ruleNumber = 0; ruleNumber < rules.length; ruleNumber++) {
+                //name of the rule
+                let elem = document.createElement("li");
+                elem.setAttribute("class", "list-group-metric");
+                elem.setAttribute("style", "font-size:16px; list-style-type:none");
+                elem.innerHTML = rules[ruleNumber].rule_name;
+
+                //button for detail modal
+                elem.appendChild(document.createElement("button"));
+                elem.lastChild.setAttribute("type", "button");
+                elem.lastChild.setAttribute("class", "btn btn-default btn-xs pull-right");
+                elem.lastChild.setAttribute("data-toggle", "modal");
+                elem.lastChild.setAttribute("data-target", "#modal-details-rule-" + ruleNumber);
+                elem.lastChild.setAttribute("style", "width:24px");
+                elem.lastChild.appendChild(document.createElement("i"));
+                elem.lastChild.lastChild.setAttribute("class", "fa fa-info");
+
+                //button for edit modal                
+                elem.appendChild(document.createElement("button"));
+                elem.lastChild.setAttribute("type", "button");
+                elem.lastChild.setAttribute("class", "btn btn-default btn-xs pull-right");
+                elem.lastChild.setAttribute("data-toggle", "modal");
+                elem.lastChild.setAttribute("data-target", "#modal-edit-rule-" + ruleNumber);
+                elem.lastChild.setAttribute("style", "margin-right: 3px; width:24x");
+                elem.lastChild.appendChild(document.createElement("i"));
+                elem.lastChild.lastChild.setAttribute("class", "fa fa-edit");
+                elem.lastChild.onclick = function() {
+                    rule_edit_display(ruleNumber);
+                };
+                // console.log(rules[ruleNumber])
+                // this generate the modal window corresponding (first div into div)
+                rule_details(ruleNumber);
+                // edit doesn't work yet #F
+                rule_edit_display(ruleNumber);
+
+                ruleList.appendChild(elem);
+            }
+        }
+
+        // function called when the cancel button is pressed at the end of the add rule form, it remove all added field a well as cleaning the form
+        // it is also called a first time when the the page is loaded
+        function generate_add_form() {
+
+            // trigger_config_id = 0;
+            //first we clear the name
+            document.getElementById("rule-name-input").value = '';
+            // console.log("generate_add_form")
+
+
+            // we remove the condition/action/button
+            while (document.getElementById("trigger_field").firstChild) {
+                // console.log(document.getElementById("trigger_field").firstChild)
+                document.getElementById("trigger_field").removeChild(document.getElementById("trigger_field").firstChild);
+            }
+
+
+            while (document.getElementById("condition_field").firstChild) {
+                // console.log(document.getElementById("condition_field").firstChild)
+                document.getElementById("condition_field").removeChild(document.getElementById("condition_field").firstChild);
+
+            }
+
+            while (document.getElementById("action-field").firstChild) {
+                document.getElementById("action-field").removeChild(document.getElementById("action-field").firstChild);
+            }
+
+            while (document.getElementById("add-bitwise-operator").firstChild) {
+                document.getElementById("add-bitwise-operator").removeChild(document.getElementById("add-bitwise-operator").firstChild);
+            }
+
+            while (document.getElementById("add-condition-bitwise-operator").firstChild) {
+                document.getElementById("add-condition-bitwise-operator").removeChild(document.getElementById("add-condition-bitwise-operator").firstChild);
+            }
+            // we actualize the button operator (from the config files) if needed, the argument is the parent element where it is generated
+
+            // we re-initialize the global var
+            trigger_number = 0;
+            trigger_config_id = 0;
+            condition_number = 0;
+            action_number = 0;
+
+            // we generate one condition/action
+            // the first condition field have the bitwise_operator first, which tell that it doesn't need to be displayed
+            add_trigger_form("FIRST");
+            // add_condition_form("FIRST");
+            operator_button_generator("add-bitwise-operator");
+            // operator_button_generator("add-condition-bitwise-operator");
+            add_action_form();
+                    
+        }
+
+        
+        // here is the functions used by generate add form
+
+        /* create the operator button (AND, OR...) from the information in the config/config.js file
+         it's a loop that go through the array and generate a button
+         for now it's only adapted for the add form #F
+         */
+        function operator_button_generator(parent_id) {
+            for (let elem of operator_button_list) {
+                let content = document.createElement("button");
+
+                document.getElementById(parent_id).appendChild(content);
+
+                content.setAttribute("type", "button");
+
+                if (parent_id.localeCompare("add-bitwise-operator") == 0){
+                    content.onclick = function() {
+                        // this is why this function work only for the add form, please refer to the comments of the function #F
+                        add_trigger_form(elem);
+                    }
+                }
+                else if (parent_id.localeCompare("add-condition-bitwise-operator") == 0){
+                    content.onclick = function() {
+                        // this is why this function work only for the add form, please refer to the comments of the function #F
+                        add_condition_form(elem);
+                    }
+                }
+                
+
+                content.classList.add("btn");
+                content.classList.add("btn-sm");
+                content.innerHTML = elem;
+                content.style.margin = "2px";
+            }
+        }
+        
+
+        function edit_operator_button_generator(ruleNumber, parent_id) {
+            for (let elem of operator_button_list) {
+                let content = document.createElement("button");
+
+
+                document.getElementById(parent_id).appendChild(content);
+
+                content.setAttribute("type", "button");
+
+                if (parent_id.includes("edit-trigger-field-") == true){
+                    content.onclick = function() {
+                        // this is why this function work only for the add form, please refer to the comments of the function #F
+                        add_edit_trigger_form(ruleNumber, elem);
+                    }
+                }
+                else if (parent_id.includes("edit-condition-field-") == true){
+                    content.onclick = function() {
+                        // this is why this function work only for the add form, please refer to the comments of the function #F
+                        add_edit_condition_form(ruleNumber, elem);
+                    }
+                }
+
+                // content.onclick = function() {
+                //     add_edit_condition_form(ruleNumber, elem);
+                // }
+                content.classList.add("btn");
+                content.classList.add("btn-sm");
+                content.innerHTML = elem;
+                content.style.margin = "2px";
+            }
+        }
+        
+        
+        // this function works specificaly to generate a condition line in the ADD form
+        // it is needed as long as the condition_number need to change for the id
+        function add_trigger_form(bitwise_operator) {
+            add_trigger_field("trigger_field", "add", trigger_number, bitwise_operator);
+            trigger_number++;
+        }
+
+        function add_edit_trigger_form(ruleNumber, bitwise_operator) {
+            console.log("add_edit_trigger_form")
+            add_trigger_field("edit-trigger-field-" + ruleNumber, "edit", trigger_number, bitwise_operator);
+            trigger_number++;
+        }
+
+
+
+
+        function add_condition_form(bitwise_operator) {
+            add_condition_field("condition_field", "add", condition_number, bitwise_operator);
+            condition_number++;
+        }
+
+        function add_edit_condition_form(ruleNumber, bitwise_operator) {
+            add_condition_field("edit-condition-field-" + ruleNumber, "edit", condition_number, bitwise_operator);
+            condition_number++;
+        }
+
+
+        
+        /* this is the global function that generate a condition line, it works for the add and edit forms as it generate default data
+            parent_id is the DOM element containing the line
+            tpye is 'add' or 'edit', so two fields in different forms aren't confused
+            suffix_id is what differentiate a line form another
+                for add it's generated from the global var 'condition_number'
+                for edit it's the number of the rule in rules[] - the condition number, example '2-1'
+            oper is the bitwise operator, it's how it is link to the other conditions
+                it's 'FIRST' for the first condition, it mean it isn't displayed, and it isn't used for the validation of the rule
+                in other cases, when we click a button it's the label of the button
+        */
+        function add_trigger_field(parent_id, tpye, suffix_id, oper) {
+            //we set the container (it so that every condition is in a different container, with a different id)
+            let content = document.createElement("div");
+            // console.log("add_trigger_field")
+            // console.log(parent_id)
+            // console.log(content)
+
+            document.getElementById(parent_id).appendChild(content);
+            // console.log(document.getElementById(parent_id).firstChild);
+            content.className = "row col-xs-12";
+            content.setAttribute("id", tpye + "-trigger-" + suffix_id);
+            content.setAttribute("style", "margin-bottom: 7px");
+
+            //if it isn't the first condition, we put the bitwise_operator
+            if (oper.localeCompare("FIRST") != 0 && oper.localeCompare("None") != 0) {
+                content.appendChild(document.createElement("div"));
+                content.lastChild.className = "col-xs-12";
+                content.lastChild.appendChild(document.createElement("p"));
+                content.lastChild.lastChild.innerHTML = oper;
+                content.lastChild.lastChild.style.marginLeft = "-19px";
+                if (oper.localeCompare("AND") == 0) {
+                    content.lastChild.lastChild.style.marginTop = "-7px";
+                    content.lastChild.lastChild.style.marginBottom = "0px";
+                }
+            }
+
+            // we first choose a timer
+            // it's a HTML input element, with the 'time' type
+            content.appendChild(document.createElement("input"));
+            content.lastChild.setAttribute("type", "text");
+            content.lastChild.setAttribute("class", "col-xs-2");
+            content.lastChild.style.paddingRight = "0px";
+            content.lastChild.setAttribute("id", tpye + "-trigger-timer-" + suffix_id);
+            content.lastChild.setAttribute("value", "00s");
+            content.lastChild.setAttribute("step", "1");
+            content.lastChild.setAttribute("title", "The minimum time the trigger has to stay active");
+
+
+            // platform select
+            var selection = document.createElement("select");
+            content.appendChild(selection);
+            selection.setAttribute("name", tpye + "-trigger-plateform-" + suffix_id);
+            selection.className += " col-xs-3";
+
+            // we generate the choice from the global 'platform_list' var #A
+            for (let i = 0; i < platform_list.length; i++) {
+                selection.appendChild(document.createElement("option"));
+                selection.lastChild.setAttribute("value", i);
+                selection.lastChild.innerHTML =  platform_list[i].PlatformName + '-' + platform_list[i].PlatformId;
+            }
+
+            selection.firstChild.setAttribute("selected", "selected");
+
+            // we generate a select for the sensor
+            content.appendChild(document.createElement("select"));
+            content.lastChild.setAttribute("name", tpye + "-trigger-metric-" + suffix_id);
+            content.lastChild.setAttribute("id", tpye + "-trigger-field-metric-" + suffix_id);
+            content.lastChild.className += " col-xs-2";
+
+            // here we fill the option for the sensor's selector with the metrics from the selected platform
+            // as the last fields of the condition depend on this choice, it is generated inside this function
+            sensor_of_plateform_option(selection.selectedIndex, tpye + "-trigger-field-metric-" + suffix_id, tpye);
+
+            // console.log("platform_index")
+            // console.log(selection.selectedIndex)
+
+            // when we select a platform it changes the metrics we can choose
+            selection.onchange = function() {
+                sensor_of_plateform_option(selection.selectedIndex, tpye + "-trigger-field-metric-" + suffix_id, tpye);
+            }
+            
+
+            //the button to remove this line
+            content.appendChild(document.createElement("button"));
+            content.lastChild.setAttribute("type", "button");
+            content.lastChild.setAttribute("class", "btn btn-default btn-xs pull-right col-xs-1");
+            content.lastChild.setAttribute("style", "width: 24px");
+            content.lastChild.onclick = function() {
+                remove_field(tpye + "-trigger-" + suffix_id);
+            }
+            content.lastChild.appendChild(document.createElement("i"));
+            content.lastChild.lastChild.setAttribute("class", "fa fa-remove");
+
+            return content;
+        }
+
+        function add_condition_field(parent_id, tpye, suffix_id, oper) {
+            //we set the container (it so that every condition is in a different container, with a different id)
+            let content = document.createElement("div");
+            document.getElementById(parent_id).appendChild(content);
+            content.className = "row col-xs-12";
+            content.setAttribute("id", tpye + "-condition-" + suffix_id);
+            content.setAttribute("style", "margin-bottom: 7px");
+
+            //if it isn't the first condition, we put the bitwise_operator
+            if (oper.localeCompare("FIRST") != 0 && oper.localeCompare("None") != 0) {
+                content.appendChild(document.createElement("div"));
+                content.lastChild.className = "col-xs-12";
+                content.lastChild.appendChild(document.createElement("p"));
+                content.lastChild.lastChild.innerHTML = oper;
+                content.lastChild.lastChild.style.marginLeft = "-19px";
+                if (oper.localeCompare("AND") == 0) {
+                    content.lastChild.lastChild.style.marginTop = "-7px";
+                    content.lastChild.lastChild.style.marginBottom = "0px";
+                }
+            }
+
+            // we first choose a timer
+            // it's a HTML input element, with the 'time' type
+            content.appendChild(document.createElement("input"));
+            content.lastChild.setAttribute("type", "text");
+            content.lastChild.setAttribute("class", "col-xs-2");
+            content.lastChild.style.paddingRight = "0px";
+            content.lastChild.setAttribute("id", tpye + "-condition-timer-" + suffix_id);
+            content.lastChild.setAttribute("value", "00s");
+            content.lastChild.setAttribute("step", "1");
+            content.lastChild.setAttribute("title", "The minimum time the trigger has to stay active");
+
+
+            // platform select
+            var selection = document.createElement("select");
+            content.appendChild(selection);
+            selection.setAttribute("name", tpye + "-condition-plateform-" + suffix_id);
+            selection.className += " col-xs-3";
+
+            // we generate the choice from the global 'platform_list' var #A
+            for (let i = 0; i < platform_list.length; i++) {
+                selection.appendChild(document.createElement("option"));
+                selection.lastChild.setAttribute("value", i);
+                selection.lastChild.innerHTML =  platform_list[i].PlatformName + '-' + platform_list[i].PlatformId;
+            }
+
+            selection.firstChild.setAttribute("selected", "selected");
+
+            // we generate a select for the sensor
+            content.appendChild(document.createElement("select"));
+            content.lastChild.setAttribute("name", tpye + "-condition-metric-" + suffix_id);
+            content.lastChild.setAttribute("id", tpye + "-condition-field-metric-" + suffix_id);
+            content.lastChild.className += " col-xs-2";
+
+            // here we fill the option for the sensor's selector with the metrics from the selected platform
+            // as the last fields of the condition depend on this choice, it is generated inside this function
+            sensor_of_plateform_option(selection.selectedIndex, tpye + "-condition-field-metric-" + suffix_id, tpye);
+
+            // console.log("platform_index")
+            // console.log(selection.selectedIndex)
+
+            // when we select a platform it changes the metrics we can choose
+            selection.onchange = function() {
+                sensor_of_plateform_option(selection.selectedIndex, tpye + "-condition-field-metric-" + suffix_id, tpye);
+            }
+            
+
+            //the button to remove this line
+            content.appendChild(document.createElement("button"));
+            content.lastChild.setAttribute("type", "button");
+            content.lastChild.setAttribute("class", "btn btn-default btn-xs pull-right col-xs-1");
+            content.lastChild.setAttribute("style", "width: 24px");
+            content.lastChild.onclick = function() {
+                remove_field(tpye + "-condition-" + suffix_id);
+            }
+            content.lastChild.appendChild(document.createElement("i"));
+            content.lastChild.lastChild.setAttribute("class", "fa fa-remove");
+
+            return content;
+        }
+
+        /* 
+        put the sources from the plateform given in the parameters as option of the select which id is given, the tpye define if it's add or edit for the value field id
+        also call the function that take care of the operator and the value
+        */
+        function sensor_of_plateform_option(platform_index, select_id, tpye) {
+            // console.log("select_id")
+            // console.log(select_id)
+            let sources = platform_list[platform_index].sources;
+            let selec = document.getElementById(select_id);
+
+            console.log("sources")
+            console.log(sources)
+
+            //first we get rid of existing options in this select
+            while (selec.firstChild) {
+                selec.removeChild(selec.firstChild);
+            }
+
+            //then we add the new one
+            for (let i = 0; i < sources.length; i++) {
+                for (let j = 0; j < sources[i].metrics.length; j++) {
+                    selec.appendChild(document.createElement("option"));
+
+                    // the value is the source index - metric index from platform_list #A
+                    selec.lastChild.setAttribute("value", i + "-" + j);
+                    selec.lastChild.innerHTML = sources[i].metrics[j].MetricName;
+                }
+            }
+
+            selec.firstChild.setAttribute("selected", "selected");
+
+            let select = selec.firstChild;
+	    console.log(select)
+
+            for (let i=0; i<sources.length; i++){
+                if (sources[i].metrics[0].DataPoint.DataType.localeCompare("int") == 0 || sources[i].metrics[0].DataPoint.DataType.localeCompare("string") == 0){
+                    adaptative_value_input(sources[i].metrics[0].MetricType, sources[i].metrics[0].DataPoint.DataType, selec.parentElement, line_id, tpye);
+                    break;
+                }
+console.log('s')
+		//if(select.nextSibling != null){
+		//    select = select.nextSibling; 
+		//}
+
+            }
+
+            select.setAttribute("selected", "selected");
+
+
+
+
+            var line_id;
+
+            if (select_id.includes("trigger") == true){
+                line_id = selec.getAttribute("id").slice(tpye.length + "-trigger-field-metric-".length, selec.getAttribute("id").length);
+            }
+            else if (select_id.includes("condition") == true){
+                line_id = selec.getAttribute("id").slice(tpye.length + "-condition-field-metric-".length, selec.getAttribute("id").length);
+            }
+
+
+
+
+            
+
+           
+
+            // when we click on one the option it change the operator and value input
+            selec.onchange = function() {
+                // we get the metric type
+                let source_metric = selec.options[selec.selectedIndex].value.split("-"); // this is the source and let metric index from platform_list #A
+                console.log("source_metric")
+                console.log(source_metric)
+                let MetricType = sources[source_metric[0]].metrics[source_metric[1]].MetricType;
+                
+                
+                // we get the suffix of the id of this condition
+                // let line_id = selec.getAttribute("id").slice(tpye.length + "-field-metric-".length, selec.getAttribute("id").length);
+                // console.log("line_id")
+                // console.log(line_id)
+                let DataType = sources[source_metric[0]].metrics[source_metric[1]].DataPoint.DataType;
+
+                
+                adaptative_value_input(MetricType, DataType, selec.parentElement, line_id, tpye);
+            }
+            //we modify the value input so it match the first sensor displayed
+
+            
+        }
+        
+        /* change the operator value input according to the sensor :
+            - humidity/temprature input with type="number"
+            - binary_sensor/light dropdown (limited chocie)
+            
+            line_id is the line number (at the end of the name)
+            tpye is to know if it's add or edit for the name
+        */
+
+
+
+        function adaptative_value_input(MetricType, DataType, parent, line_id, tpye) {
+            let operator_field, value_field, operator_field_index, value_field_index;
+
+            //in the case we are in the first line, the index changes because of the absence of bitwise operator
+            if (parent.childElementCount == 6) {
+                operator_field_index = 3;
+                value_field_index = 4;
+            } else {
+                operator_field_index = 4;
+                value_field_index = 5;
+
+            }
+
+            switch (MetricType) {
+                case "binary_sensor":
+                case "light":
+                case "Switch":
+                    
+                    // as the chocie is limited, the operator is '=='
+                    operator_field = document.createElement("p");
+                    operator_field.setAttribute("name", "comparison-type-" + line_id);
+                    operator_field.setAttribute("style", "text-align: center");
+                    operator_field.className += " col-xs-2";
+                    operator_field.innerHTML += "==";
+
+                    if (parent.childNodes[4]) {
+                        parent.replaceChild(operator_field, parent.childNodes[operator_field_index]);
+                    } else {
+                        parent.appendChild(operator_field);
+                    }
+
+                    value_field = document.createElement("select");
+                    value_field.setAttribute("name", tpye + "-value-" + action_number);
+                    value_field.className += " col-xs-2";
+
+                    value_field.appendChild(document.createElement("option"));
+                    value_field.lastChild.setAttribute("value", "off");
+                    value_field.lastChild.innerHTML = "off";
+                    value_field.appendChild(document.createElement("option"));
+                    value_field.lastChild.setAttribute("value", "on");
+                    value_field.lastChild.innerHTML = "on";
+
+                    if (parent.childNodes[5]) {
+                        parent.replaceChild(value_field, parent.childNodes[value_field_index]);;
+                    } else {
+                        parent.appendChild(value_field);
+                    }
+                    break;
+                case "Gauge":
+                    switch (DataType){
+                        case "string":
+                            console.log("string")
+                            // as the chocie is limited, the operator is '=='
+                            operator_field = document.createElement("p");
+                            operator_field.setAttribute("name", "comparison-type-" + line_id);
+                            operator_field.setAttribute("style", "text-align: center");
+                            operator_field.className += " col-xs-2";
+                            operator_field.innerHTML += "==";
+
+                            if (parent.childNodes[4]) {
+                                parent.replaceChild(operator_field, parent.childNodes[operator_field_index]);
+                            } else {
+                                parent.appendChild(operator_field);
+                            }
+
+                            value_field = document.createElement("select");
+                            value_field.setAttribute("name", tpye + "-value-" + action_number);
+                            value_field.className += " col-xs-2";
+
+                            value_field.appendChild(document.createElement("option"));
+                            value_field.lastChild.setAttribute("value", "off");
+                            value_field.lastChild.innerHTML = "off";
+                            value_field.appendChild(document.createElement("option"));
+                            value_field.lastChild.setAttribute("value", "on");
+                            value_field.lastChild.innerHTML = "on";
+
+                            if (parent.childNodes[5]) {
+                                parent.replaceChild(value_field, parent.childNodes[value_field_index]);;
+                            } else {
+                                parent.appendChild(value_field);
+                            }
+                            break;
+                        case "int":
+                            console.log("int")
+                            //we set the dropdown of operator
+                            operator_field = document.createElement("select");
+                            operator_field.setAttribute("name", "comparison-type-" + line_id);
+                            operator_field.className += " col-xs-2";
+
+                            // #B because the values have  changed, also it can be put in the config file
+                            operator_field.appendChild(document.createElement("option"));
+                            operator_field.lastChild.setAttribute("value", "GT");
+                            operator_field.lastChild.innerHTML = ">";
+                            operator_field.appendChild(document.createElement("option"));
+                            operator_field.lastChild.setAttribute("value", "LT");
+                            operator_field.lastChild.innerHTML = "<";
+                            operator_field.appendChild(document.createElement("option"));
+                            operator_field.lastChild.setAttribute("value", "GE");
+                            operator_field.lastChild.innerHTML = ">=";
+                            operator_field.appendChild(document.createElement("option"));
+                            operator_field.lastChild.setAttribute("value", "LE");
+                            operator_field.lastChild.innerHTML = "<=";
+                            operator_field.appendChild(document.createElement("option"));
+                            operator_field.lastChild.setAttribute("value", "EQ");
+                            operator_field.lastChild.innerHTML = "==";
+                            operator_field.appendChild(document.createElement("option"));
+                            operator_field.lastChild.setAttribute("value", "NE");
+                            operator_field.lastChild.innerHTML = "<>";
+
+
+
+                            if (parent.childNodes[4]) {
+                                parent.replaceChild(operator_field, parent.childNodes[operator_field_index]);
+                            } else {
+                                parent.appendChild(operator_field);
+                            }
+
+                            //we set the value field
+                            value_field = document.createElement("input");
+                            value_field.setAttribute("type", "string");
+                            value_field.setAttribute("name", "value-" + line_id);
+                            value_field.setAttribute("required", "true");
+                            value_field.setAttribute("step", "1");
+                            value_field.value = 0;
+                            value_field.className += " col-xs-2";
+
+                            if (parent.childNodes[5]) {
+                                parent.replaceChild(value_field, parent.childNodes[value_field_index]);
+                            } else {
+                                parent.appendChild(value_field);
+                            }
+                            break;
+                        default:
+                            console.error("this sensor isn't managed yet : " + DataType);
+
+                    }
+                    break;
+
+                default:
+                    console.error("this sensor isn't managed yet : " + MetricType);
+            }
+        }
+        
+        
+        
+        //this function remove a condition/action with an id == field_id
+        function remove_field(field_id) {
+            let elem = document.getElementById(field_id);
+            let parent = elem.parentElement;
+            parent.removeChild(elem);
+
+            // if it was the only action/condition, we generate a new one
+            if (parent.childNodes.length == 0) {
+                if (parent.getAttribute("id").split("-")[0].localeCompare("condition") == 0) {
+                    add_condition_form("FIRST");
+                } else {
+                    add_action_form();
+                }
+            }
+
+        }
+        
+        
+        
+        // this function works specificaly to generate an action line in the ADD form
+        // it is needed as long as the action_number need to change for the id
+        function add_action_form() {
+            add_action_field("action-field", "add", action_number);
+            action_number++;
+        }
+          
+        /* this is the global function that generate an action line, it works for the add and edit forms as it generate default data
+            parent_id is the DOM element containing the line
+            tpye is 'add' or 'edit', so two fields in different forms aren't confused
+            suffix_id is what differentiate a line form another
+                for add it's generated from the global var '    action_number'
+                for edit it's the number of the rule in rules[] - the action number, example '2-1'
+        */
+
+
+        function add_action_field(parent_id, tpye, suffix_id) {
+            //we first set the container
+            let content = document.createElement("div");
+            document.getElementById(parent_id).appendChild(content);
+
+            content.className = "row col-xs-12";
+            content.setAttribute("id", tpye + "-action-" + suffix_id);
+            content.setAttribute("style", "margin-bottom: 7px");
+
+            //we choose a timer ? same as in the condtion
+            content.appendChild(document.createElement("input"));
+            content.lastChild.setAttribute("type", "text");
+            content.lastChild.setAttribute("class", "col-xs-2");
+            content.lastChild.style.paddingRight = "0px";
+            content.lastChild.setAttribute("id", tpye + "-action-timer-" + suffix_id);
+            content.lastChild.setAttribute("value", "00s");
+            content.lastChild.setAttribute("step", "1");
+            content.lastChild.setAttribute("title", "The time the action will activate after the condtions are met");
+
+
+            //we set the dropdown to chose an action
+            var selection1 = document.createElement("select");
+            content.appendChild(selection1);
+            selection1.setAttribute("name", tpye + "-action-type-" + suffix_id);
+
+            for (let i = 0; i < action_list.length; i++) {
+                selection1.appendChild(document.createElement("option"));
+                selection1.lastChild.setAttribute("value", action_list[i]);
+                selection1.lastChild.innerHTML = action_list[i];
+            }
+
+            var selection2 = document.createElement("select");
+            content.appendChild(selection2);
+            selection2.setAttribute("name", tpye + "-platform-" + suffix_id);
+            selection2.className += " col-xs-2";
+
+
+            for (let i = 0; i < platform_list.length; i++) {
+                selection2.appendChild(document.createElement("option"));
+                selection2.lastChild.setAttribute("value", i);
+                selection2.lastChild.innerHTML = platform_list[i].PlatformName + '-' + platform_list[i].PlatformId;
+            }
+
+            selection2.firstChild.setAttribute("selected", "selected");
+
+            // we generate a select for the sensor
+            content.appendChild(document.createElement("select"));
+            content.lastChild.setAttribute("name", tpye + "-metric-" + suffix_id);
+            content.lastChild.setAttribute("id", tpye + "-field-metric-action-" + suffix_id);
+            content.lastChild.className += " col-xs-2";
+
+            // here we fill the option for the sensor's selector with the metrics from the selected platform
+            // as the last fields of the condition depend on this choice, it is generated inside this function
+
+            sensor_of_plateform_option(0, tpye + "-field-metric-action-" + suffix_id, tpye);
+
+
+
+            // when we select a platform it changes the metrics we can choose
+            selection2.onchange = function() {
+                sensor_of_plateform_option(selection2.selectedIndex, tpye + "-field-metric-action-" + suffix_id, tpye);
+            }
+            
+
+            // //the button to remove this line
+            content.appendChild(document.createElement("button"));
+            content.lastChild.setAttribute("type", "button");
+            content.lastChild.setAttribute("class", "btn btn-default btn-xs pull-right col-xs-1");
+            content.lastChild.setAttribute("style", "width: 24px");
+            content.lastChild.onclick = function() {
+                remove_field(tpye + "-action-" + suffix_id);
+            }
+            content.lastChild.appendChild(document.createElement("i"));
+            content.lastChild.lastChild.setAttribute("class", "fa fa-remove");
+
+
+
+
+
+
+            // // the button to remove the line
+            // content.appendChild(document.createElement("button"));
+            // content.lastChild.setAttribute("type", "button");
+            // content.lastChild.setAttribute("class", "btn btn-default btn-xs pull-right col-xs-1");
+            // content.lastChild.setAttribute("id", "dismiss-action-field-" + action_number);
+            // content.lastChild.setAttribute("style", "width: 24px");
+            // content.lastChild.onclick = function() {
+            //     remove_field(content.getAttribute("id"));
+            // }
+            // content.lastChild.appendChild(document.createElement("i"));
+            // content.lastChild.lastChild.setAttribute("class", "fa fa-remove");
+
+            return content;
+        }       
+        
+        // this function is called when the add button is clicked
+        // it's this function that gather all the data from the form to make a rule and send it to the server
+        function add_new_rule() {
+            let myRule = new Rule(document.getElementById("rule-name-input").value, "enable");
+            console.log("aaaaaaaaaaa");
+            console.log(myRule);
+            // in this loop we add the condition to do in the rule we create
+            // each loop it goes take the DOM elements -> make some operation if needed -> we take the correct data -> we put it in structure
+
+            let bitwise;
+           
+            for (let i = 0; i < document.getElementById("trigger_field").childNodes.length; i++) {
+                // we get the first element, it depend if the condition is the first because of the bitwise operator
+                // console.log("trigger_field");
+                // console.log(i);
+                let timer, bitwise_operator;
+                // console.log("tagName")
+                // console.log(document.getElementById("trigger_field").childNodes[i].firstChild.tagName);
+
+                if (document.getElementById("trigger_field").childNodes[i].firstChild.tagName.localeCompare("INPUT") == 0) {
+                    bitwise_operator = "None";
+                    timer = document.getElementById("trigger_field").childNodes[i].firstChild;
+                    // console.log(timer);
+                }
+                else {
+                    bitwise_operator = document.getElementById("trigger_field").childNodes[i].firstChild;
+                    // console.log(bitwise_operator);
+                    timer = bitwise_operator.nextSibling;
+                    // console.log(timer);
+                    bitwise_operator = bitwise_operator.firstChild.innerHTML;
+                    // console.log(bitwise_operator);
+                }
+
+
+                // we get the platform element
+                let platform = timer.nextSibling;
+                // console.log("platform_1");
+                // console.log(platform);
+
+                //then the source-metric element (the sensor)
+                let source_metric = platform.nextSibling;
+                // console.log("source_metric");
+                // console.log(source_metric);
+
+
+                //then the operator element
+                let operator = source_metric.nextSibling;
+                // console.log("operator");
+                // console.log(operator);
+
+                //finally the value element to compare
+                let value = operator.nextSibling;
+
+                //then we extract the intermediate data
+                platform = platform.value;
+                // console.log("platform");
+                // console.log(platform);
+
+                source_metric = source_metric.value.split("-"); // chi so sources + chi so metric
+                // console.log("source_metric");
+                // console.log(source_metric);
+
+
+                // console.log("operator.tagName");
+                // console.log(operator.tagName)
+
+                //if it's in an html <p> tag, the operator is '=='
+                if (operator.tagName.localeCompare("P") == 0) { // may have a bug, change not tested (localCompare)
+                    operator = "EQ"; // #B
+                    // console.log("operator")
+                    // console.log(operator);
+                } else if (operator.tagName.localeCompare("SELECT") == 0) {
+                    operator = operator.options[operator.selectedIndex].value;
+                    // console.log(operator);
+                }
+
+                // console.log("value ")
+                // console.log(value)
+
+                if (value.tagName.localeCompare("INPUT") == 0) { // may have a bug, change not tested (localCompare)
+                    value = value.value;
+                    // console.log(value);
+                } else if (value.tagName.localeCompare("SELECT") == 0) {
+                    value = value.options[value.selectedIndex].value;
+                    // console.log(value);
+                }
+
+                // then we have the correct data 
+                // #C1 the following lines need to change according to the new rule data structure
+                let the_metric = platform_list[platform].sources[source_metric[0]].metrics[source_metric[1]];
+                // console.log("the_metric")
+                // console.log(the_metric);
+
+                let the_source = platform_list[platform].sources[source_metric[0]];
+                // console.log("the_source");
+                // console.log(the_source);
+
+
+                config = {bitwise_operator:bitwise_operator, constraint:{comparation:operator, item:{platform_id:platform_list[platform].PlatformId, thing_global_id:the_source.information.SourceId, item_global_id:the_metric.MetricId, item_type:the_metric.DataPoint.DataType, item_name:the_metric.MetricName}, time:timer.value, value:value}, trigger_config_id:trigger_config_id}
+
+                trigger_config_id = trigger_config_id + 1
+
+                output = {description:"event created by trigger "+myRule.trigger_id, event_id:"" + Math.random().toString(36).substr(2, 9), event_source:myRule.trigger_id}
+
+                myRule.add_trigger("item_has_given_state", "fix item_type for now", config, output);
+
+
+                console.log("myRule");
+                console.log(myRule);
+            }
+
+            // console.log("length");
+            // console.log(document.getElementById("action-field").childNodes.length);
+
+            // Here we add the actions to do in the rule we create
+            
+            
+            for (let i = 0; i < document.getElementById("action-field").childNodes.length; i++) {
+                // console.log(document.getElementById("action-field").childNodes[i]);
+                let timer = document.getElementById("action-field").childNodes[i].firstChild;
+
+                let select = timer.nextElementSibling;
+                // console.log("next timer")
+                // console.log(select.options[select.selectedIndex].value);
+
+                let platform = select.nextSibling;
+                // console.log("platform_1");
+                // console.log(platform);
+
+                //then the source-metric element (the sensor)
+                let source_metric = platform.nextSibling;
+                // console.log("source_metric");
+                // console.log(source_metric);
+
+                //then the operator element
+                let operator = source_metric.nextSibling;
+                // console.log("operator");
+                // console.log(operator);
+
+                //finally the value element to compare
+                let value = operator.nextSibling;
+
+                //then we extract the intermediate data
+                platform = platform.value;
+                // console.log("platform");
+                // console.log(platform);
+
+                source_metric = source_metric.value.split("-"); // chi so sources + chi so metric
+                // console.log("source_metric");
+                // console.log(source_metric);
+
+
+                // console.log("operator.tagName");
+                // console.log(operator.tagName)
+
+                //if it's in an html <p> tag, the operator is '=='
+                if (operator.tagName.localeCompare("P") == 0) { // may have a bug, change not tested (localCompare)
+                    operator = "EQ"; // #B
+                    // console.log("operator")
+                    // console.log(operator);
+                } else if (operator.tagName.localeCompare("SELECT") == 0) {
+                    operator = operator.options[operator.selectedIndex].value;
+                    // console.log(operator);
+                }
+
+                // console.log("value")
+                // console.log(value)
+
+                if (value.tagName.localeCompare("INPUT") == 0) { // may have a bug, change not tested (localCompare)
+                    value = value.value;
+                    // console.log(value);
+                } else if (value.tagName.localeCompare("SELECT") == 0) {
+                    value = value.options[value.selectedIndex].value;
+                    // console.log(value);
+                }
+
+                let the_metric = platform_list[platform].sources[source_metric[0]].metrics[source_metric[1]];
+                // console.log("the_metric")
+                // console.log(the_metric);
+
+                let the_source = platform_list[platform].sources[source_metric[0]];
+                // console.log("the_source");
+                // console.log(the_source);
+
+
+                let time=timer.value;
+                let item_type=the_metric.MetricType;
+                let item_name = the_metric.MetricName;
+                let item_global_id=the_metric.MetricId;
+                let thing_global_id=the_source.information.SourceId;
+                let sub_action_id = Math.random().toString(36).substr(2, 9);
+
+                myRule.add_action(timer.value, "call_cross_platform_api", sub_action_id, platform_list[platform].PlatformId, thing_global_id, item_global_id, item_type, item_name, value)
+            }
+            
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+            for (let i = 0; i < document.getElementById("condition_field").childNodes.length; i++) {
+                // we get the first element, it depend if the condition is the first because of the bitwise operator
+                // console.log("trigger_field");
+                // console.log(i);
+                let timer, bitwise_operator;
+                // console.log("tagName")
+                // console.log(document.getElementById("trigger_field").childNodes[i].firstChild.tagName);
+
+                if (document.getElementById("condition_field").childNodes[i].firstChild.tagName.localeCompare("INPUT") == 0) {
+                    bitwise_operator = "None";
+                    timer = document.getElementById("condition_field").childNodes[i].firstChild;
+                    // console.log(timer);
+                }
+                else {
+                    bitwise_operator = document.getElementById("condition_field").childNodes[i].firstChild;
+                    // console.log(bitwise_operator);
+                    timer = bitwise_operator.nextSibling;
+                    // console.log(timer);
+                    bitwise_operator = bitwise_operator.firstChild.innerHTML;
+                    // console.log(bitwise_operator);
+                }
+
+
+                // we get the platform element
+                let platform = timer.nextSibling;
+                // console.log("platform_1");
+                // console.log(platform);
+
+                //then the source-metric element (the sensor)
+                let source_metric = platform.nextSibling;
+                // console.log("source_metric");
+                // console.log(source_metric);
+
+
+                //then the operator element
+                let operator = source_metric.nextSibling;
+                // console.log("operator");
+                // console.log(operator);
+
+                //finally the value element to compare
+                let value = operator.nextSibling;
+
+                //then we extract the intermediate data
+                platform = platform.value;
+                // console.log("platform");
+                // console.log(platform);
+
+                source_metric = source_metric.value.split("-"); // chi so sources + chi so metric
+                // console.log("source_metric");
+                // console.log(source_metric);
+
+
+                // console.log("operator.tagName");
+                // console.log(operator.tagName)
+
+                //if it's in an html <p> tag, the operator is '=='
+                if (operator.tagName.localeCompare("P") == 0) { // may have a bug, change not tested (localCompare)
+                    operator = "EQ"; // #B
+                    // console.log("operator")
+                    // console.log(operator);
+                } else if (operator.tagName.localeCompare("SELECT") == 0) {
+                    operator = operator.options[operator.selectedIndex].value;
+                    // console.log(operator);
+                }
+
+                // console.log("value ")
+                // console.log(value)
+
+                if (value.tagName.localeCompare("INPUT") == 0) { // may have a bug, change not tested (localCompare)
+                    value = value.value;
+                    // console.log(value);
+                } else if (value.tagName.localeCompare("SELECT") == 0) {
+                    value = value.options[value.selectedIndex].value;
+                    // console.log(value);
+                }
+
+                // then we have the correct data 
+                // #C1 the following lines need to change according to the new rule data structure
+                let the_metric = platform_list[platform].sources[source_metric[0]].metrics[source_metric[1]];
+                // console.log("the_metric")
+                // console.log(the_metric);
+
+                let the_source = platform_list[platform].sources[source_metric[0]];
+                // console.log("the_source");
+                // console.log(the_source);
+
+
+                config = {bitwise_operator:bitwise_operator, constraint:{comparation:operator, item:{platform_id:platform_list[platform].PlatformId, thing_global_id:the_source.information.SourceId, item_global_id:the_metric.MetricId, item_type:the_metric.DataPoint.DataType, item_name:the_metric.MetricName}, time:timer.value, value:value}}
+
+
+                myRule.add_condition("item_has_given_state", "fix item_type for now", config);
+
+
+                console.log("myRule");
+                console.log(myRule);
+            }
+
+
+
+
+            // console.log(myRule);
+
+            // console.log(typeof myRule);
+
+
+            push_rule(myRule); //#C
+            list_existing_rule();
+            generate_add_form();
+        }       
+        
+
+        //the function that push a rule on the server
+        function push_rule(rule) {
+            console.log("push_rule")
+            var xhr = new XMLHttpRequest();
+            var url = rule_API + "/rule";
+            xhr.open("POST", url, false);
+            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var json = JSON.parse(xhr.responseText);
+                    console.log("json");
+                    console.log(json);
+                }
+                else{
+                    console.log("error push rule");
+                }
+            };
+            var data = JSON.stringify(rule);
+            xhr.send(data);
+        }
+
+        // function which manage the display when the "i" button is clicked
+        function rule_details(ruleNumber) {
+            //first we look if this modal window already exist
+            if (document.getElementById("modal-details-rule-" + ruleNumber)) {
+                document.getElementById("modal-details-rule-" + ruleNumber).parentNode.removeChild(document.getElementById("modal-details-rule-" + ruleNumber));
+            }
+
+            let modalDiv = document.getElementById("modal-div");
+
+            modalDiv.appendChild(document.createElement("div"));
+            modalDiv.lastChild.setAttribute("class", "modal fade");
+            modalDiv.lastChild.setAttribute("id", "modal-details-rule-" + ruleNumber);
+            modalDiv.lastChild.appendChild(document.createElement("div"));
+            modalDiv.lastChild.lastChild.setAttribute("class", "modal-dialog");
+            modalDiv.lastChild.lastChild.setAttribute("style", "width : 750px");
+            
+
+            //the content of the modal window
+            modalDiv.lastChild.lastChild.appendChild(document.createElement("div"));
+            let modalContent = modalDiv.lastChild.lastChild.lastChild;
+            modalContent.setAttribute("class", "modal-content");
+            modalContent.setAttribute("style", "white-space: pre; font-family: monospace")
+
+            //content of the header
+            modalContent.appendChild(document.createElement("div"));
+            modalContent.lastChild.setAttribute("class", "modal-header");
+            
+
+            modalContent.lastChild.appendChild(document.createElement("button"));
+            modalContent.lastChild.lastChild.setAttribute("type", "button");
+            modalContent.lastChild.lastChild.setAttribute("class", "close");
+            modalContent.lastChild.lastChild.setAttribute("data-dismiss", "modal");
+            modalContent.lastChild.lastChild.setAttribute("aria-label", "Close");
+            modalContent.lastChild.lastChild.appendChild(document.createElement("span"));
+            modalContent.lastChild.lastChild.lastChild.setAttribute("aria-hidden", "true");
+            modalContent.lastChild.lastChild.lastChild.innerHTML = '&times;';
+
+            modalContent.lastChild.appendChild(document.createElement("h4"));
+            modalContent.lastChild.lastChild.setAttribute("class", "modal-title");
+            modalContent.lastChild.lastChild.innerHTML += rules[ruleNumber].rule_name;
+            
+            //content of the body
+            modalContent.appendChild(document.createElement("div"));
+            let modalBody = modalContent.lastChild;
+            modalBody.setAttribute("class", "modal-body");
+            modalBody.setAttribute("style", "white-space: pre; font-family: monospace; width: 750px")
+
+
+            modalBody.appendChild(document.createElement("p"));
+            modalBody.lastChild.innerHTML = "> rule_id: " + rules[ruleNumber].rule_id;
+            modalBody.lastChild.style.color = "#777777";
+            modalBody.lastChild.style.marginTop = "-12px";
+            modalBody.lastChild.style.fontSize = "7";
+
+            modalBody.appendChild(document.createElement("p"));
+            modalBody.lastChild.innerHTML = JSON.stringify(rules[ruleNumber], null, 4)
+
+            // modalBody.appendChild(document.createElement("h5"));
+            // modalBody.lastChild.innerHTML = "IF";
+            // modalBody.innerHTML += "(";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.innerHTML += "\"bitwise\": {";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.innerHTML += "\"bitwise\": {";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.appendChild(document.createElement("br"));
+            // // We go through the bitwise
+            // for(let i = 0; i < rules[ruleNumber].condition.config.length; i++) {
+            //     // console.log(rules[ruleNumber].condition.config[i])
+            //     modalBody.appendChild(document.createElement("div"));
+            //     bitwise_detail(modalBody.lastChild, rules[ruleNumber].condition.config[i]);
+            // }
+
+            // modalBody.innerHTML += "\t}";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.innerHTML += "}";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.innerHTML += "bitwise_operator: \"" + rules[ruleNumber].condition.config.bitwise_operator + "\"";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.innerHTML += "item: \"" + JSON.stringify(rules[ruleNumber].condition.config[0].constraint.item, undefined, 4) + "\"";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.innerHTML += ")";
+            
+            // // bitwise_detail(modalBody.lastChild, rules[ruleNumber].condition.bitwise)
+
+            // modalBody.appendChild(document.createElement("h5"));
+            // modalBody.lastChild.innerHTML = "THEN";
+            // // // #D
+            // modalBody.innerHTML += "(";
+            // for (let i = 0; i < rules[ruleNumber].action.action.length; i++) {
+            //     let acti = JSON.stringify(rules[ruleNumber].action.action[i], undefined, 4);
+            //     modalBody.appendChild(document.createElement("p"));
+            //     modalBody.lastChild.innerHTML += acti;
+            // }
+            // modalBody.innerHTML += ")";
+
+
+            // modalBody.appendChild(document.createElement("h5"));
+            // modalBody.lastChild.innerHTML = "BUT ONLY IF";
+            // modalBody.innerHTML += "(";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.innerHTML += "\"bitwise\": {";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.innerHTML += "\"bitwise\": {";
+            // modalBody.appendChild(document.createElement("br"));
+            // modalBody.appendChild(document.createElement("br"));
+            // // We go through the bitwise
+            // for(let i = 0; i < rules[ruleNumber].condition.config.length; i++) {
+            //     // console.log(rules[ruleNumber].condition.config[i])
+            //     modalBody.appendChild(document.createElement("div"));
+            //     bitwise_detail(modalBody.lastChild, rules[ruleNumber].condition.config[i]);
+            // }
+
+            
+            
+
+
+            //content of the modal footer
+            modalContent.appendChild(document.createElement("div"));
+            modalContent.lastChild.setAttribute("class", "modal-footer");
+            modalContent.lastChild.appendChild(document.createElement("button"));
+            modalContent.lastChild.lastChild.setAttribute("type", "button");
+            modalContent.lastChild.lastChild.setAttribute("class", "btn btn-default pull-right");
+            modalContent.lastChild.lastChild.setAttribute("data-dismiss", "modal");
+            modalContent.lastChild.lastChild.innerHTML = "Close";
+        }
+
+        // this display a bitwise (~condition) and call in recursion this function to display the bitwise inside
+        // #D
+        function bitwise_detail(parent_element, config) {
+            // console.log(config)
+            console.log("bitwise_detail")
+            console.log(parent_element)
+            let container = parent_element.appendChild(document.createElement("div"));
+            container.style.paddingLeft = "12px";
+            let content = container.appendChild(document.createElement("p"));
+            content.style.marginTop = "-10px";
+
+            //the timer
+            content.innerHTML += JSON.stringify(config, undefined, 4);
+            if (config.bitwise_operator.localeCompare("None") != 0) {
+                // for (let k = 0; k < config.bitwise.length; k++) {
+                //     content.appendChild(document.createElement("br"));
+                //     content.appendChild(document.createElement("p"));
+                //     content.lastChild.innerHTML += config.bitwise_operator;
+                //     bitwise_detail(container, bitwise.bitwise[k]);
+                // }
+                content.appendChild(document.createElement("br"));
+                content.appendChild(document.createElement("p"));
+                content.lastChild.innerHTML += config.bitwise_operator;
+            }
+            container.appendChild(document.createElement("p"));
+            container.lastChild.style.marginTop = "-10px";
+        }
+        
+    
+        // function which manage the display when the edit (the pen) button is clicked
+        // #E
+        function rule_edit_display(ruleNumber) {
+            
+            // console.log("rule_edit_display")
+            // console.log(ruleNumber)
+            //first we look if this modal window already exist
+            if (document.getElementById("modal-edit-rule-" + ruleNumber)) {
+                document.getElementById("modal-edit-rule-" + ruleNumber).parentNode.removeChild(document.getElementById("modal-edit-rule-" + ruleNumber));
+            }
+
+            //here we got the rule
+            var aRule = rules[ruleNumber];
+            console.log(aRule)
+
+            //the declaration of the modal window
+            let modalDiv = document.getElementById("modal-div");
+            modalDiv.appendChild(document.createElement("div"));
+            modalDiv.lastChild.setAttribute("class", "modal fade");
+            modalDiv.lastChild.setAttribute("id", "modal-edit-rule-" + ruleNumber);
+
+            modalDiv.lastChild.appendChild(document.createElement("div"));
+            modalDiv.lastChild.lastChild.setAttribute("class", "modal-dialog");
+            modalDiv.lastChild.lastChild.setAttribute("style", "width: 50%");
+
+            modalDiv.lastChild.lastChild.appendChild(document.createElement("div"));
+            let modalContent = modalDiv.lastChild.lastChild.lastChild;
+            modalContent.setAttribute("class", "modal-content");
+
+            //content of the header
+            modalContent.appendChild(document.createElement("div"));
+            modalContent.lastChild.setAttribute("class", "modal-header");
+
+
+            modalContent.lastChild.appendChild(document.createElement("button"));
+            modalContent.lastChild.lastChild.setAttribute("type", "button");
+            modalContent.lastChild.lastChild.setAttribute("class", "close");
+            modalContent.lastChild.lastChild.setAttribute("data-dismiss", "modal");
+            modalContent.lastChild.lastChild.setAttribute("aria-label", "Close");
+            modalContent.lastChild.lastChild.appendChild(document.createElement("span"));
+            modalContent.lastChild.lastChild.lastChild.setAttribute("aria-hidden", "true");
+            modalContent.lastChild.lastChild.lastChild.innerHTML = '&times;';
+
+            //the rule name
+            modalContent.lastChild.appendChild(document.createElement("input"));
+            modalContent.lastChild.lastChild.setAttribute("type", "text");
+            modalContent.lastChild.lastChild.setAttribute("name", "rule-" + ruleNumber);
+            modalContent.lastChild.lastChild.setAttribute("required", "true");
+            modalContent.lastChild.lastChild.value = aRule.rule_name;
+
+
+            modalContent.lastChild.appendChild(document.createElement("p"));
+            modalContent.lastChild.lastChild.innerHTML = "rule_id: " + rules[ruleNumber].rule_id;
+            modalContent.lastChild.lastChild.style.color = "#777777";
+            modalContent.lastChild.lastChild.style.marginTop = "0px";
+            modalContent.lastChild.lastChild.style.fontSize = "7";
+
+
+            //content of the body
+            modalContent.appendChild(document.createElement("div"));
+            let modalBody = modalContent.lastChild;
+            modalBody.setAttribute("class", "modal-body");
+
+
+
+            modalBody.appendChild(document.createElement("h5"));
+            modalBody.lastChild.innerHTML = "IF";
+
+            modalBody.appendChild(document.createElement("fieldset"));
+            modalBody.lastChild.setAttribute("id", "edit-trigger-field-" + ruleNumber);
+
+
+
+            //////////////////// TEST DISPLAY RULE TRIGGER ///////////////////
+            // while (aRule.condition.bitwise.length != 0)
+
+            // console.log("bitwise");
+            let config = aRule.trigger.config;
+
+            console.log("config")
+            console.log(config)
+
+            // let bitwise_operator = aRule.trigger.config[0].bitwise_operator;
+            // let sources = aRule.trigger.config[0].constraint;
+            // console.log("platform_list");
+            // console.log(platform_list);
+
+            let trigger_count = -1;
+
+            //here we do the conditions field
+            for (let j = 0; j < config.length; j++) {
+                let bitwise_operator = aRule.trigger.config[j].bitwise_operator;
+                let sources = aRule.trigger.config[j].constraint;
+
+                // console.log("sources")
+                // console.log(sources)
+
+                //first the field is generated
+                let content = add_trigger_field("edit-trigger-field-" + ruleNumber, "edit", ruleNumber + '-' + trigger_count, bitwise_operator);
+
+                // console.log("content")
+                // console.log(content)
+                
+                // let timer = document.getElementById("edit-trigger-field-" + ruleNumber).firstChild.firstChild;
+                let timer = document.getElementById("edit-trigger-timer-" + ruleNumber + "-" + trigger_count)
+                // console.log("timer")
+                // console.log(timer)
+                timer.setAttribute("value", sources.time)
+
+                // console.log("timer")
+                // console.log(timer)
+                // document.getElementById("edit-plateform-" + trigger_count).setAttribute("value", sources[0].PlatformId)
+
+                let platform_index = -1;
+
+
+                // console.log("innerHTML")
+                // console.log(document.getElementsByName("edit-plateform-" + ruleNumber + '-' + trigger_count)[0].innerHTML)
+
+                for (let i=0; i<document.getElementsByName("edit-trigger-plateform-" + ruleNumber + '-' + trigger_count)[0].length; i++){
+                    if (document.getElementsByName("edit-trigger-plateform-" + ruleNumber + '-' + trigger_count)[0][i].innerHTML.includes(sources.item.platform_id) == true){
+                        platform_index = document.getElementsByName("edit-trigger-plateform-" + ruleNumber + '-' + trigger_count)[0][i].value;
+                        break;
+                    }
+                }
+
+
+                document.getElementsByName("edit-trigger-plateform-" + ruleNumber + '-' + trigger_count)[0].value = platform_index;
+
+                document.getElementsByName("edit-trigger-plateform-" + ruleNumber + '-' + trigger_count)[0].selectedIndex=platform_index;
+
+
+                sensor_of_plateform_option(platform_index, "edit-trigger-field-metric-" + ruleNumber + '-' + trigger_count, "edit");
+
+
+                let metric_index = "";
+
+                for (let i=0; i<document.getElementById("edit-trigger-field-metric-" + ruleNumber + '-' + trigger_count).length; i++){
+                    if (document.getElementById("edit-trigger-field-metric-" + ruleNumber + '-' + trigger_count)[i].innerHTML.localeCompare(sources.item.item_name) == 0){
+                        metric_index = document.getElementById("edit-trigger-field-metric-" + ruleNumber + '-' + trigger_count)[i].value;
+                        break;
+                    }
+                }
+
+
+                document.getElementById("edit-trigger-field-metric-" + ruleNumber + '-' + trigger_count).value = metric_index;
+
+
+                console.log("metric")
+                console.log(document.getElementById("edit-trigger-field-metric-" + ruleNumber + '-' + trigger_count).nextSibling)
+
+                let comparision_index = 0;
+                let compareElement = document.getElementById("edit-trigger-field-metric-" + ruleNumber + '-' + trigger_count).nextSibling;
+
+                console.log("compareElement");
+                console.log(compareElement);
+                // console.log(compareElement[i].value)
+                console.log(sources.comparation)
+
+                for (let i=0; i<compareElement.length; i++){
+                    console.log(compareElement[i].value)
+                    if (compareElement[i].value.localeCompare(sources.comparation) == 0){
+                        comparision_index = compareElement[i].value;
+                        // console.log(comparision_index)
+                        break;
+                    }
+                }
+                // console.log("comparision_index");
+                // console.log(comparision_index)
+                compareElement.value = comparision_index;
+                // compareElement.setAttribute("disabled", "disabled")
+
+                console.log("after comparation")
+                console.log(document.getElementById("edit-trigger-field-metric-" + ruleNumber + '-' + trigger_count).nextSibling.nextSibling)
+
+
+                let valueElement = document.getElementById("edit-trigger-field-metric-" + ruleNumber + '-' + trigger_count).nextSibling.nextSibling;
+                // valueElement.value = parseInt(sources[0].value)
+                valueElement.value = sources.value
+                // valueElement.setAttribute("disabled", "disabled")
+
+
+
+                console.log("valueElement");
+                console.log(sources.value)
+                console.log(valueElement.value)
+
+
+                PlatformId = sources.item.platform_id
+                // console.log("PlatformId");
+                // console.log(PlatformId);
+
+                let PlatformId_index=-1;
+
+                for (let i=0; i<platform_list.length; i++){
+                    if (platform_list[i].PlatformId.localeCompare(PlatformId) == 0){
+                        PlatformId_index = i;
+                    }
+                }
+
+                // initialize platform
+                let selection = content.firstChild.nextSibling;
+
+            
+                trigger_count = trigger_count - 1;
+ 
+            }
+
+            //the button to add a field
+            edit_operator_button_generator(ruleNumber, "edit-trigger-field-" + ruleNumber);
+            modalBody.appendChild(document.createElement("div"));
+            modalBody.lastChild.setAttribute("class", "col-md-12 text-center ");
+            modalBody.lastChild.appendChild(document.createElement("span"));
+            modalBody.lastChild.lastChild.setAttribute("id", "edit-plus-condition");
+            modalBody.lastChild.lastChild.onclick = function() {
+                // we give the function elements to create an id, so a common base-rulenumber-somesource different for every condition of this rule : the highest one + 1, or 0 if there isn't any condition yet
+                let identifiant;
+                if (document.getElementById("edit-trigger-field-" + ruleNumber).lastChild) {
+                    identifiant = document.getElementById("edit-trigger-field-" + ruleNumber).lastChild.getAttribute("id");
+                    identifiant = identifiant.split("-")[3];
+                    identifiant = parseInt(identifiant) + 1;
+                } else {
+                    identifiant = 0;
+                }
+                add_trigger_field("edit-trigger-field-" + ruleNumber, "edit", ruleNumber + "-" + identifiant, aRule.condition.bitwise.bitwise_operator);
+            };
+
+            modalBody.appendChild(document.createElement("h5"));
+            modalBody.lastChild.innerHTML = "THEN";
+
+            modalBody.appendChild(document.createElement("fieldset"));
+            modalBody.lastChild.setAttribute("id", "edit-action-field-" + ruleNumber);
+
+
+            // console.log("aRule")
+            // console.log(aRule)
+
+            //here we do the actions field
+            for (let i = 0; i < rules[ruleNumber].action.action.length; i++) {
+
+                let content = add_action_field("edit-action-field-" + ruleNumber, "edit", ruleNumber + "-" + i);
+
+                //initialize timer
+                let action_timer = rules[ruleNumber].action.action[i].time;
+                // console.log("action_timer");
+                // console.log(action_timer)
+                content.firstChild.setAttribute("value", action_timer);
+
+                let selection = content.firstChild.nextSibling;
+                for (let s, j = 0; s = selection.options[j]; j++) {
+                    if (s.value == rules[ruleNumber].action.action[i].action_type) {
+                        selection.childNodes[j].setAttribute("selected", "selected");
+                        break;
+                    }
+                }
+
+                let edit_action_platform = selection.nextSibling;
+                // console.log("edit_action_platform");
+                // console.log(edit_action_platform[0])
+
+                // console.log(rules[ruleNumber].action.action[i].config.item.platform_id)
+
+
+                for (let j=0; j<edit_action_platform.length; j++){
+                    // console.log(edit_action_platform[j].innerHTML)
+                    if (edit_action_platform[j].innerHTML.includes(rules[ruleNumber].action.action[i].config.item.platform_id)){
+                        edit_action_platform[j].selected = "selected";
+                        // console.log("edit_action_platform_selected");
+                        // console.log(edit_action_platform)
+                        sensor_of_plateform_option(j, "edit-field-metric-action-" + ruleNumber+"-"+i, "edit");
+                        break;
+                    }
+                }
+
+
+
+                let edit_action_metric = edit_action_platform.nextSibling;
+                // console.log("edit_action_metric");
+                // console.log(edit_action_metric);
+                // console.log(rules[ruleNumber].action.action[i].config.item.item_name)
+
+                for (let j=0; j<edit_action_metric.length; j++){
+                    if (edit_action_metric[j].innerHTML.includes(rules[ruleNumber].action.action[i].config.item.item_name)){
+                        edit_action_metric[j].selected = "selected";
+                        break;
+                    }
+                }
+
+
+                let edit_action_comparision = edit_action_metric.nextSibling;
+                // console.log("edit_action_comparision");
+                // console.log(edit_action_comparision);
+
+                for (let j=0; j<edit_action_comparision.length; j++){
+                    // console.log(edit_action_comparision[j].value)
+                    if (edit_action_comparision[j].value.localeCompare("EQ") == 0){
+                        edit_action_comparision[j].selected = "selected";
+                        break;
+                    }
+                }
+
+
+                let edit_action_value = edit_action_comparision.nextSibling;
+                // console.log("edit_action_value");
+                // console.log(rules[ruleNumber].action.action[i].config.value);
+                edit_action_value.value = rules[ruleNumber].action.action[i].config.value;
+
+
+            }
+
+            //the button to add a field
+            modalBody.appendChild(document.createElement("div"));
+            modalBody.lastChild.setAttribute("class", "col-md-12 text-center");
+            modalBody.lastChild.appendChild(document.createElement("span"));
+            modalBody.lastChild.lastChild.setAttribute("class", "glyphicon glyphicon-plus");
+            modalBody.lastChild.lastChild.setAttribute("id", "edit-plus-action");
+            modalBody.lastChild.lastChild.onclick = function() {
+                // we give the function elements to create an id, so a common base-rulenumber-somesource different for every condition of this rule : the highest one + 1, or 0 if there isn't any condition yet
+                let identifiant;
+                if (document.getElementById("edit-action-field-" + ruleNumber).lastChild) {
+                    identifiant = document.getElementById("edit-action-field-" + ruleNumber).lastChild.getAttribute("id");
+                    identifiant = identifiant.split("-")[3];
+                    identifiant = parseInt(identifiant) + 1;
+                } else {
+                    identifiant = 0;
+                }
+                add_action_field("edit-action-field-" + ruleNumber, "edit", ruleNumber + "-" + identifiant);
+            };
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
+
+
+
+            modalBody.appendChild(document.createElement("h5"));
+            modalBody.lastChild.innerHTML = "BUT ONLY IF";
+
+            modalBody.appendChild(document.createElement("fieldset"));
+            modalBody.lastChild.setAttribute("id", "edit-condition-field-" + ruleNumber);
+
+
+
+            //////////////////// TEST DISPLAY RULE CONDITION ///////////////////
+            // while (aRule.condition.bitwise.length != 0)
+
+            // console.log("bitwise");
+            let condition_config = aRule.condition.config;
+
+            console.log(condition_config)
+
+            // let bitwise_operator = aRule.trigger.config[0].bitwise_operator;
+            // let sources = aRule.trigger.config[0].constraint;
+            // console.log("platform_list");
+            // console.log(platform_list);
+
+            let condition_count = -1;
+
+            //here we do the conditions field
+            for (let j = 0; j < condition_config.length; j++) {
+                let bitwise_operator = aRule.condition.config[j].bitwise_operator;
+                let sources = aRule.condition.config[j].constraint;
+
+                // console.log("sources")
+                // console.log(sources)
+
+                //first the field is generated
+                let condition_content = add_condition_field("edit-condition-field-" + ruleNumber, "edit", ruleNumber + '-' + condition_count, bitwise_operator);
+
+                document.getElementById("edit-condition-timer-" + ruleNumber + '-' + condition_count).setAttribute("value", sources.time)
+                // document.getElementById("edit-plateform-" + trigger_count).setAttribute("value", sources[0].PlatformId)
+
+                let platform_index = -1;
+
+
+                // console.log("innerHTML")
+                // console.log(document.getElementsByName("edit-plateform-" + ruleNumber + '-' + trigger_count)[0].innerHTML)
+
+                for (let i=0; i<document.getElementsByName("edit-condition-plateform-" + ruleNumber + '-' + condition_count)[0].length; i++){
+                    if (document.getElementsByName("edit-condition-plateform-" + ruleNumber + '-' + condition_count)[0][i].innerHTML.includes(sources.item.platform_id) == true){
+                        platform_index = document.getElementsByName("edit-condition-plateform-" + ruleNumber + '-' + condition_count)[0][i].value;
+                        break;
+                    }
+                }
+
+
+                document.getElementsByName("edit-condition-plateform-" + ruleNumber + '-' + condition_count)[0].value = platform_index;
+
+                document.getElementsByName("edit-condition-plateform-" + ruleNumber + '-' + condition_count)[0].selectedIndex=platform_index;
+
+
+                sensor_of_plateform_option(platform_index, "edit-condition-field-metric-" + ruleNumber + '-' + condition_count, "edit");
+
+
+                let metric_index = "";
+
+                for (let i=0; i<document.getElementById("edit-condition-field-metric-" + ruleNumber + '-' + condition_count).length; i++){
+                    if (document.getElementById("edit-condition-field-metric-" + ruleNumber + '-' + condition_count)[i].innerHTML.localeCompare(sources.item.item_name) == 0){
+                        metric_index = document.getElementById("edit-condition-field-metric-" + ruleNumber + '-' + condition_count)[i].value;
+                        break;
+                    }
+                }
+
+
+                document.getElementById("edit-condition-field-metric-" + ruleNumber + '-' + condition_count).value = metric_index;
+
+                console.log(metric_index)
+
+                let comparision_index = 0;
+                let compareElement = document.getElementById("edit-condition-field-metric-" + ruleNumber + '-' + condition_count).nextSibling;
+
+                // console.log("compareElement");
+                // console.log(compareElement);
+                // console.log(sources)
+                console.log(sources.comparation)
+
+                for (let i=0; i<compareElement.length; i++){
+                    console.log(compareElement[i].value)
+                    if (compareElement[i].value.localeCompare(sources.comparation) == 0){
+                        comparision_index = compareElement[i].value;
+                        // console.log(comparision_index)
+                        break;
+                    }
+                }
+                // console.log("comparision_index");
+                // console.log(comparision_index)
+                compareElement.value = comparision_index;
+
+
+                let valueElement = document.getElementById("edit-condition-field-metric-" + ruleNumber + '-' + condition_count).nextSibling.nextSibling;
+                // valueElement.value = parseInt(sources[0].value)
+                valueElement.value = sources.value
+                // console.log("valueElement");
+                // console.log(valueElement.value)
+
+
+                PlatformId = sources.item.platform_id
+                // console.log("PlatformId");
+                // console.log(PlatformId);
+
+                let PlatformId_index=-1;
+
+                for (let i=0; i<platform_list.length; i++){
+                    if (platform_list[i].PlatformId.localeCompare(PlatformId) == 0){
+                        PlatformId_index = i;
+                    }
+                }
+
+                // initialize platform
+                let selection = condition_content.firstChild.nextSibling;
+
+            
+                condition_count = condition_count - 1;
+
+            }
+            */
+
+            /*
+
+            //the button to add a field
+            edit_operator_button_generator(ruleNumber, "edit-condition-field-" + ruleNumber);
+            modalBody.appendChild(document.createElement("div"));
+            modalBody.lastChild.setAttribute("class", "col-md-12 text-center");
+            modalBody.lastChild.appendChild(document.createElement("span"));
+            modalBody.lastChild.lastChild.setAttribute("id", "edit-plus-condition");
+            modalBody.lastChild.lastChild.onclick = function() {
+                // we give the function elements to create an id, so a common base-rulenumber-somesource different for every condition of this rule : the highest one + 1, or 0 if there isn't any condition yet
+                let identifiant;
+                if (document.getElementById("edit-condition-field-" + ruleNumber).lastChild) {
+                    identifiant = document.getElementById("edit-condition-field-" + ruleNumber).lastChild.getAttribute("id");
+                    identifiant = identifiant.split("-")[3];
+                    identifiant = parseInt(identifiant) + 1;
+                } else {
+                    identifiant = 0;
+                }
+                add_condition_field("edit-condition-field-" + ruleNumber, "edit", ruleNumber + "-" + identifiant, aRule.condition.bitwise.bitwise_operator);
+            };
+            
+            */
+
+
+
+
+
+
+
+
+
+
+
+
+            //content of the modal footer
+            modalContent.appendChild(document.createElement("div"));
+            modalContent.lastChild.setAttribute("class", "modal-footer");
+            modalContent.lastChild.appendChild(document.createElement("button"));
+            modalContent.lastChild.lastChild.setAttribute("type", "button");
+            modalContent.lastChild.lastChild.setAttribute("class", "btn btn-default pull-right");
+            modalContent.lastChild.lastChild.setAttribute("data-dismiss", "modal");
+            modalContent.lastChild.lastChild.setAttribute("style", "margin-left: 7px");
+            modalContent.lastChild.lastChild.innerHTML = "Close";
+
+            modalContent.lastChild.appendChild(document.createElement("button"));
+            modalContent.lastChild.lastChild.setAttribute("type", "button");
+            modalContent.lastChild.lastChild.setAttribute("class", "btn btn-default btn-primary pull-right");
+            modalContent.lastChild.lastChild.setAttribute("style", "color:white");
+            modalContent.lastChild.lastChild.setAttribute("data-dismiss", "modal");
+            modalContent.lastChild.lastChild.setAttribute("data-toggle", "modal");
+            modalContent.lastChild.lastChild.setAttribute("data-target", "#modal-details-rule-" + ruleNumber);
+            modalContent.lastChild.lastChild.onclick = function() {
+                rule_edit(ruleNumber);
+            }
+            modalContent.lastChild.lastChild.innerHTML = "Edit";
+
+            modalContent.lastChild.appendChild(document.createElement("button"));
+            modalContent.lastChild.lastChild.setAttribute("type", "button");
+            modalContent.lastChild.lastChild.setAttribute("class", "btn btn-default btn-danger pull-right");
+            modalContent.lastChild.lastChild.setAttribute("data-dismiss", "modal");
+            modalContent.lastChild.lastChild.onclick = function() {
+                rule_remove(ruleNumber);
+            };
+            modalContent.lastChild.lastChild.setAttribute("style", "margin-left: 7px; color:white");
+            modalContent.lastChild.lastChild.innerHTML = "Remove";
+
+            // operator_button_generator("edit-trigger-field-" + ruleNumber)
+            // operator_button_generator("edit-condition-field-" + ruleNumber)
+
+        
+        }
+
+        //called whent the edit button button is clicked
+        // #E
+        function rule_edit(ruleNumber) {
+
+            let myRule = new Rule(document.getElementById("modal-edit-rule-" + ruleNumber).firstChild.firstChild.firstChild.firstChild.nextSibling.value, "edit");
+
+            console.log("##################################################################")
+            console.log("edit_rule")
+
+            // console.log(myRule)
+            console.log(document.getElementById("modal-details-rule-" + ruleNumber).childNodes)
+
+
+            for (let i = 0; i < document.getElementById("edit-trigger-field-" + ruleNumber).childNodes.length; i++) {
+                // we get the first element, it depend if the conditionis the first because of the bitwise operator
+                // console.log("trigger_field");
+                // console.log(i);
+                let timer, bitwise_operator;
+                console.log("tagName")
+                console.log(document.getElementById("edit-trigger-field-" + ruleNumber).childNodes[i].tagName)
+                // console.log(document.getElementById("edit-trigger-field-" + ruleNumber).childNodes[i].firstChild.tagName);
+                if (document.getElementById("edit-trigger-field-" + ruleNumber).childNodes[i].tagName.localeCompare("BUTTON") == 0){
+
+                    console.log("BUTTON TAG")
+                    continue
+                }
+                else if (document.getElementById("edit-trigger-field-" + ruleNumber).childNodes[i].firstChild.tagName.localeCompare("INPUT") == 0) {
+                    bitwise_operator = "None";
+                    timer = document.getElementById("edit-trigger-field-" + ruleNumber).childNodes[i].firstChild;
+                    console.log(timer);
+                }
+                else {
+                    bitwise_operator = document.getElementById("edit-trigger-field-" + ruleNumber).childNodes[i].firstChild;
+                    console.log(bitwise_operator);
+                    timer = bitwise_operator.nextSibling;
+                    console.log(timer);
+                    bitwise_operator = bitwise_operator.firstChild.innerHTML;
+                    console.log(bitwise_operator);
+                }
+
+
+                // we get the platform element
+                let platform = timer.nextSibling;
+                console.log("platform");
+                console.log(platform);
+
+                //then the source-metric element (the sensor)
+                let source_metric = platform.nextSibling;
+                console.log("source_metric");
+                console.log(source_metric);
+                // console.log(platform_list[source_metric.value.split("-")[1]].platform_id);
+
+                //then the operator element
+                let operator = source_metric.nextSibling;
+                console.log("operator");
+                console.log(operator);
+
+                //finally the value element to compare
+                let value = operator.nextSibling;
+
+                //then we extract the intermediate data
+                platform = platform.value;
+                console.log("platform");
+                console.log(platform);
+
+                source_metric = source_metric.value.split("-"); // chi so sources + chi so metric
+                console.log("source_metric");
+                console.log(source_metric);
+
+
+                console.log("operator.tagName");
+                console.log(operator.tagName)
+
+                //if it's in an html <p> tag, the operator is '=='
+                if (operator.tagName.localeCompare("P") == 0) { // may have a bug, change not tested (localCompare)
+                    operator = "EQ"; // #B
+                    console.log("operator")
+                    console.log(operator);
+                } else if (operator.tagName.localeCompare("SELECT") == 0) {
+                    operator = operator.options[operator.selectedIndex].value;
+                    console.log(operator);
+                }
+
+                console.log("value ")
+                console.log(value)
+
+                if (value.tagName.localeCompare("INPUT") == 0) { // may have a bug, change not tested (localCompare)
+                    value = value.value;
+                    console.log(value);
+                } else if (value.tagName.localeCompare("SELECT") == 0) {
+                    value = value.options[value.selectedIndex].value;
+                    console.log(value);
+                }
+
+                // then we have the correct data 
+                // #C1 the following lines need to change according to the new rule data structure
+                let the_metric = platform_list[platform].sources[source_metric[0]].metrics[source_metric[1]];
+                console.log("the_metric")
+                console.log(the_metric);
+
+                let the_source = platform_list[platform].sources[source_metric[0]];
+                console.log("the_source");
+                console.log(the_source);
+
+                config = {bitwise_operator:bitwise_operator, constraint:{comparation:operator, item:{platform_id:platform_list[platform].PlatformId, thing_global_id:the_source.information.SourceId, item_global_id:the_metric.MetricId, item_type:the_metric.MetricType, item_name:the_metric.MetricName}, time:timer.value, value:value}, trigger_config_id:trigger_config_id}
+
+                trigger_config_id = trigger_config_id + 1
+
+                output = {description:"event created by trigger "+myRule.trigger_id, event_id:"" + Math.random().toString(36).substr(2, 9), event_source:myRule.trigger_id}
+
+
+
+                myRule.add_trigger("item_has_given_state", "fix item_type for now", config, output);
+                myRule.trigger_id = myRule.trigger.trigger_id
+
+                console.log("myRule.trigger_id")
+                console.log(myRule.trigger_id)
+                
+            }
+
+            
+
+            console.log("edit_rule")
+            console.log(myRule)
+
+
+            //Here we edit the actions to do in the rule we create
+            for (let i = 0; i < document.getElementById("edit-action-field-" + ruleNumber).childElementCount; i++) {
+                //first we get the timer element
+                let timer = document.getElementById("edit-action-field-" + ruleNumber).childNodes[i].firstChild;
+
+                let select = timer.nextSibling;
+                console.log("select")
+                console.log(select)
+
+                let platform = select.nextSibling;
+                console.log("platform");
+                console.log(platform);
+
+                //then the source-metric element (the sensor)
+                let source_metric = platform.nextSibling;
+                console.log("source_metric");
+                console.log(source_metric);
+                console.log(platform_list[source_metric.value.split("-")[1]].PlatformId);
+
+                //then the operator element
+                let operator = source_metric.nextSibling;
+                console.log("operator");
+                console.log(operator);
+
+                //finally the value element to compare
+                let value = operator.nextSibling;
+
+                //then we extract the intermediate data
+                platform = platform.value;
+                console.log("platform");
+                console.log(platform);
+
+                source_metric = source_metric.value.split("-"); // chi so sources + chi so metric
+                console.log("source_metric");
+                console.log(source_metric);
+
+
+                console.log("operator.tagName");
+                console.log(operator.tagName)
+
+                let the_metric = platform_list[platform].sources[source_metric[0]].metrics[source_metric[1]];
+                console.log("the_metric")
+                console.log(the_metric);
+
+                let the_source = platform_list[platform].sources[source_metric[0]];
+                console.log("the_source");
+                console.log(the_source);
+
+                console.log(value)
+
+                
+                let time=timer.value;
+                let item_type=the_metric.MetricType;
+                let item_name = the_metric.MetricName;
+                let item_global_id=the_metric.MetricId;
+                let thing_global_id=the_source.information.SourceId;
+                let sub_action_id = Math.random().toString(36).substr(2, 9);
+
+                myRule.add_action(timer.value, "call_cross_platform_api", sub_action_id, platform_list[platform].PlatformId, thing_global_id, item_global_id, item_type, item_name, value.value)
+
+                myRule.action_id = myRule.action.action_id
+                console.log("myRule.action_id")
+                console.log(myRule.action_id)
+                
+            }
+            // rules.splice(ruleNumber, 1, myRule);
+            // myRule.rule_status = "edit";
+            myRule.rule_id = rules[ruleNumber].rule_id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ///////////////////////////////////////////////////////////////////////////
+            //////// NOT SET NOW BECAUSE OF REMOVE CONDITION FIELD ON UI
+
+            /*
+            
+            // Add condition field
+
+            console.log("add_condition_field")
+
+            for (let i = 0; i < document.getElementById("edit-condition-field-" + ruleNumber).childNodes.length; i++) {
+                // we get the first element, it depend if the conditionis the first because of the bitwise operator
+                // console.log("trigger_field");
+                // console.log(i);
+                let timer, bitwise_operator;
+                console.log("tagName")
+                console.log(document.getElementById("edit-condition-field-" + ruleNumber).childNodes[i].firstChild.tagName);
+
+                if (document.getElementById("edit-condition-field-" + ruleNumber).childNodes[i].tagName.localeCompare("BUTTON") == 0){
+
+                    console.log("BUTTON TAG")
+                    continue
+                }
+                else if (document.getElementById("edit-condition-field-" + ruleNumber).childNodes[i].firstChild.tagName.localeCompare("INPUT") == 0) {
+                    bitwise_operator = "None";
+                    timer = document.getElementById("edit-condition-field-" + ruleNumber).childNodes[i].firstChild;
+                    console.log(timer);
+                }
+                else {
+                    bitwise_operator = document.getElementById("edit-condition-field-" + ruleNumber).childNodes[i].firstChild;
+                    console.log(bitwise_operator);
+                    timer = bitwise_operator.nextSibling;
+                    console.log(timer);
+                    bitwise_operator = bitwise_operator.firstChild.innerHTML;
+                    console.log(bitwise_operator);
+                }
+
+
+                // we get the platform element
+                let platform = timer.nextSibling;
+                console.log("platform");
+                console.log(platform);
+
+                //then the source-metric element (the sensor)
+                let source_metric = platform.nextSibling;
+                console.log("source_metric");
+                console.log(source_metric);
+                // console.log(platform_list[source_metric.value.split("-")[1]].platform_id);
+
+                //then the operator element
+                let operator = source_metric.nextSibling;
+                console.log("operator");
+                console.log(operator);
+
+                //finally the value element to compare
+                let value = operator.nextSibling;
+
+                //then we extract the intermediate data
+                platform = platform.value;
+                console.log("platform");
+                console.log(platform);
+
+                source_metric = source_metric.value.split("-"); // chi so sources + chi so metric
+                console.log("source_metric");
+                console.log(source_metric);
+
+
+                console.log("operator.tagName");
+                console.log(operator.tagName)
+
+                //if it's in an html <p> tag, the operator is '=='
+                if (operator.tagName.localeCompare("P") == 0) { // may have a bug, change not tested (localCompare)
+                    operator = "EQ"; // #B
+                    console.log("operator")
+                    console.log(operator);
+                } else if (operator.tagName.localeCompare("SELECT") == 0) {
+                    operator = operator.options[operator.selectedIndex].value;
+                    console.log(operator);
+                }
+
+                console.log("value")
+                console.log(value)
+                console.log("value.tagName")
+                console.log(value.tagName)
+
+                if (value.tagName.localeCompare("INPUT") == 0) { // may have a bug, change not tested (localCompare)
+                    value = value.value;
+                    console.log(value);
+                } else if (value.tagName.localeCompare("SELECT") == 0) {
+                    value = value.options[value.selectedIndex].value;
+                    console.log(value);
+                }
+
+                // then we have the correct data 
+                // #C1 the following lines need to change according to the new rule data structure
+                let the_metric = platform_list[platform].sources[source_metric[0]].metrics[source_metric[1]];
+                console.log("the_metric")
+                console.log(the_metric);
+
+                let the_source = platform_list[platform].sources[source_metric[0]];
+                console.log("the_source");
+                console.log(the_source);
+
+                config = {bitwise_operator:bitwise_operator, constraint:{comparation:operator, item:{platform_id:platform_list[platform].PlatformId, thing_global_id:the_source.information.SourceId, item_global_id:the_metric.MetricId, item_type:the_metric.MetricType, item_name:the_metric.MetricName}, time:timer.value, value:value}}
+
+
+                myRule.add_condition("item_has_given_state", "fix item_type for now", config);
+
+                myRule.condition_id = myRule.condition.condition_id
+
+                console.log("myRule.condition_id")
+                console.log(myRule.condition_id)
+
+            }
+            //////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////
+            */
+
+
+
+
+
+            push_rule(myRule);
+            list_existing_rule();
+
+            rule_edit_display(ruleNumber);
+            rule_details(ruleNumber);
+
+
+        }
+
+        //called whent the remove button button is clicked
+        function rule_remove(ruleNumber) {
+            if(confirm("Are you sure you want to remove the rule " + rules[ruleNumber].rule_name + " ?")) {
+                rules[ruleNumber].rule_status = "disable";
+                console.log(rules[ruleNumber]);
+                console.log(typeof rules[ruleNumber]);
+                push_rule(rules[ruleNumber]);
+                list_existing_rule();
+            }
+        }
+    </script>
+

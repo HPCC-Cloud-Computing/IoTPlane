@@ -1,0 +1,522 @@
+[
+  {
+    "items": [
+      {
+        "can_set_state": "no", 
+        "history": [
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:17Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:22Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:27Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:32Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:37Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:42Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:47Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:52Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:57Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:07:02Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:07:07Z"
+          }
+        ], 
+        "item_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-binary_sensor.motion_detection-binary_sensor.motion_detection", 
+        "item_local_id": "binary_sensor.motion_detection", 
+        "item_name": "Motion Detection", 
+        "item_status": "active", 
+        "item_type": "binary_sensor"
+      }
+    ], 
+    "location": null, 
+    "platform_id": "fc910950-6a5c-4a78-9e85-b870143e23e0", 
+    "thing_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-binary_sensor.motion_detection", 
+    "thing_local_id": "binary_sensor.motion_detection", 
+    "thing_name": "Motion Detection", 
+    "thing_status": "active", 
+    "thing_type": "binary_sensor"
+  }, 
+  {
+    "items": [
+      {
+        "can_set_state": "yes", 
+        "history": [
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:17Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:22Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:27Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:32Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:37Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:42Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:47Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:52Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:57Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:07:02Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:07:07Z"
+          }
+        ], 
+        "item_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-light.green_light-light.green_light", 
+        "item_local_id": "light.green_light", 
+        "item_name": "Green Light", 
+        "item_status": "active", 
+        "item_type": "light"
+      }
+    ], 
+    "location": "hihi", 
+    "platform_id": "fc910950-6a5c-4a78-9e85-b870143e23e0", 
+    "thing_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-light.green_light", 
+    "thing_local_id": "light.green_light", 
+    "thing_name": "Green Light", 
+    "thing_status": "active", 
+    "thing_type": "light"
+  }, 
+  {
+    "items": [
+      {
+        "can_set_state": "yes", 
+        "history": [
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:17Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:22Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:27Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:32Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:37Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:42Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:47Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:52Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:57Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:07:02Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:07:07Z"
+          }
+        ], 
+        "item_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-light.red_light-light.red_light", 
+        "item_local_id": "light.red_light", 
+        "item_name": "Red Light", 
+        "item_status": "active", 
+        "item_type": "light"
+      }
+    ], 
+    "location": "hihi", 
+    "platform_id": "fc910950-6a5c-4a78-9e85-b870143e23e0", 
+    "thing_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-light.red_light", 
+    "thing_local_id": "light.red_light", 
+    "thing_name": "Red Light", 
+    "thing_status": "active", 
+    "thing_type": "light"
+  }, 
+  {
+    "items": [
+      {
+        "can_set_state": "yes", 
+        "history": [
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:17Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:22Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:27Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:32Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:37Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:42Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:47Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:52Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:06:57Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:07:02Z"
+          }, 
+          {
+            "item_state": "off", 
+            "last_changed": "2018-05-05T10:07:07Z"
+          }
+        ], 
+        "item_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-light.yellow_light-light.yellow_light", 
+        "item_local_id": "light.yellow_light", 
+        "item_name": "Yellow Light", 
+        "item_status": "active", 
+        "item_type": "light"
+      }
+    ], 
+    "location": "all_lights", 
+    "platform_id": "fc910950-6a5c-4a78-9e85-b870143e23e0", 
+    "thing_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-light.yellow_light", 
+    "thing_local_id": "light.yellow_light", 
+    "thing_name": "Yellow Light", 
+    "thing_status": "active", 
+    "thing_type": "light"
+  }, 
+  {
+    "items": [
+      {
+        "can_set_state": "no", 
+        "history": [
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:17Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:22Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:27Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:32Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:37Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:42Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:47Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:52Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:57Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:07:02Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:07:07Z"
+          }
+        ], 
+        "item_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-sensor.humidity-sensor.humidity", 
+        "item_local_id": "sensor.humidity", 
+        "item_name": "Humidity", 
+        "item_status": "active", 
+        "item_type": "sensor"
+      }
+    ], 
+    "location": null, 
+    "platform_id": "fc910950-6a5c-4a78-9e85-b870143e23e0", 
+    "thing_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-sensor.humidity", 
+    "thing_local_id": "sensor.humidity", 
+    "thing_name": "Humidity", 
+    "thing_status": "active", 
+    "thing_type": "sensor"
+  }, 
+  {
+    "items": [
+      {
+        "can_set_state": "no", 
+        "history": [
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:17Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:22Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:27Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:32Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:37Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:42Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:47Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:52Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:57Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:07:02Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:07:07Z"
+          }
+        ], 
+        "item_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-sensor.light-sensor.light", 
+        "item_local_id": "sensor.light", 
+        "item_name": "Light", 
+        "item_status": "active", 
+        "item_type": "sensor"
+      }
+    ], 
+    "location": null, 
+    "platform_id": "fc910950-6a5c-4a78-9e85-b870143e23e0", 
+    "thing_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-sensor.light", 
+    "thing_local_id": "sensor.light", 
+    "thing_name": "Light", 
+    "thing_status": "active", 
+    "thing_type": "sensor"
+  }, 
+  {
+    "items": [
+      {
+        "can_set_state": "no", 
+        "history": [
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:17Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:22Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:27Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:32Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:37Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:42Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:47Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:52Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:06:57Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:07:02Z"
+          }, 
+          {
+            "item_state": "unknown", 
+            "last_changed": "2018-05-05T10:07:07Z"
+          }
+        ], 
+        "item_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-sensor.temperature2-sensor.temperature2", 
+        "item_local_id": "sensor.temperature2", 
+        "item_name": "Temperature2", 
+        "item_status": "active", 
+        "item_type": "sensor"
+      }
+    ], 
+    "location": null, 
+    "platform_id": "fc910950-6a5c-4a78-9e85-b870143e23e0", 
+    "thing_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-sensor.temperature2", 
+    "thing_local_id": "sensor.temperature2", 
+    "thing_name": "Temperature2", 
+    "thing_status": "active", 
+    "thing_type": "sensor"
+  }, 
+  {
+    "items": [
+      {
+        "can_set_state": "no", 
+        "history": [
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:06:17Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:06:22Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:06:27Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:06:32Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:06:37Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:06:42Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:06:47Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:06:52Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:06:57Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:07:02Z"
+          }, 
+          {
+            "item_state": "0.68.1", 
+            "last_changed": "2018-05-05T10:07:07Z"
+          }
+        ], 
+        "item_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-updater.updater-updater.updater", 
+        "item_local_id": "updater.updater", 
+        "item_name": "Update Available", 
+        "item_status": "active", 
+        "item_type": "updater"
+      }
+    ], 
+    "location": null, 
+    "platform_id": "fc910950-6a5c-4a78-9e85-b870143e23e0", 
+    "thing_global_id": "fc910950-6a5c-4a78-9e85-b870143e23e0-updater.updater", 
+    "thing_local_id": "updater.updater", 
+    "thing_name": "Update Available", 
+    "thing_status": "active", 
+    "thing_type": "updater"
+  }
+]
