@@ -1,0 +1,22 @@
+#btn-get{
+  text-align: center;
+  margin-top: 15px;
+  margin-left: 2%;
+  margin-bottom: 15px;
+}
+#btn-reset{
+  text-align: center;
+  margin-top: 15px;
+  margin-left: 42%;
+  margin-bottom: 15px;
+}
+
+.form-control{
+  width: 200px;
+  margin-right: 50px;
+  margin-bottom: 20px;
+}
+
+.plus_button{
+  margin-left: 14%;
+}

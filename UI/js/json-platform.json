@@ -1,0 +1,89 @@
+
+
+ThingsBoard 
+
+1 hộp được biểu diễn trên Thingsboard
+{
+    "type":"Light, Temperature & Humidity",
+    "additionalInfo":{
+        "description":"Light, Temperature & Humidity"
+    },
+    "tenantId":{
+        "entityType":"TENANT",
+        "id":"a42e9340-4ed0-11e8-9071-9dc4b7fcfa12"
+    },
+    "id":{
+        "entityType":"DEVICE",
+        "id":"bb12cda0-4f80-11e8-a082-9dc4b7fcfa12"
+    },
+    "customerId":{
+        "entityType":"CUSTOMER",
+        "id":"3f4fd570-4ed4-11e8-a082-9dc4b7fcfa12"
+    },
+    "createdTime":1525427494778,
+    "name":"Light, Temperature & Humidity Device"
+}
+
+Trạng thái các thiết bị trong hộp
+{
+    "light":[
+        {
+            "value":"0",
+            "ts":1534749541789
+        }
+    ],
+    "temperature":[
+        {
+            "value":"30",
+            "ts":1534749541789
+        }
+    ],
+    "humidity":[
+        {
+            "value":"16",
+            "ts":1534749541789
+        }
+    ]
+    }
+
+
+
+
+
+
+
+Openhab
+
+    Biểu diễn một cảm biến nhiệt độ trên Openhab
+    {
+        "type":"Number",
+        "stateDescription":{
+            "options":[],
+            "pattern":"%.1f oC",
+            "readOnly":False
+        },
+        "name":"Temperature",
+        "link":"http://192.168.60.197:8080/rest/items/Temperature",
+        "groupNames":[],
+        "category":"temperature",
+        "state":"31",
+        "tags":[],
+        "label":"Temperature:"
+    }
+
+
+Homeassistant 
+
+    Biểu diễn một cảm biến nhiệt độ trên Homeassistant
+
+{
+    "attributes": {
+        "friendly_name": "Temperature",
+        "unit_of_measurement": "°C"
+    },
+    "entity_id": "sensor.temperature",
+    "last_changed": "2018-08-18T23:25:38.276355+00:00",
+    "last_updated": "2018-08-18T23:25:38.276355+00:00",
+    "state": "24"
+},
+
